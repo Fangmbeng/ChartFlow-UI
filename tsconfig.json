@@ -19,7 +19,7 @@
       }
     ],
     "paths": {
-      "medjournal/*": ["./src/*"]
+      "chartflowAI/*": ["./src/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
