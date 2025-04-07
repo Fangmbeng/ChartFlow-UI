@@ -45,7 +45,7 @@ export default function Home() {
             <div className="bg-white/10 backdrop-blur rounded-2xl p-6 text-left text-white shadow-[inset_2px_2px_4px_rgba(255,255,255,0.1),_inset_-2px_-2px_4px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_20px_rgba(255,255,255,0.05)] transition-all duration-300">
               <h3 className="text-2xl font-semibold mb-2">Write Business Logic</h3>
               <p className="text-white/70 text-sm">
-                ChartFlow AI helps you design Software Architecture, to providde robust & secure applications for multiple business sectors.
+                ChartFlow AI helps you design Software Architecture, to provide robust & secure applications for multiple business sectors.
               </p>
             </div>
             <div className="bg-white/10 backdrop-blur rounded-2xl p-6 text-left text-white shadow-[inset_2px_2px_4px_rgba(255,255,255,0.1),_inset_-2px_-2px_4px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_20px_rgba(255,255,255,0.05)] transition-all duration-300">
