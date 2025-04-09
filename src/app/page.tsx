@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useRouter } from 'next/navigation';
 
 // Dynamically load Spline only on client side
-const Spline = dynamic(() => import('./Component/ui/SplineClient'), {
+const Spline = dynamic(() => import('./component/ui/SplineClient'), {
   ssr: false,
 });
 
