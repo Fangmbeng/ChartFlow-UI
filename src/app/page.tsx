@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useRouter } from 'next/navigation';
 
 // Dynamically load Spline only on client side
-const Spline = dynamic(() => import('./component/ui/SplineClient'), {
+const Spline = dynamic(() => import('./components/ui/SplineClient'), {
   ssr: false,
 });
 
@@ -16,8 +16,7 @@ export default function Home() {
     <div className="relative flex flex-col min-h-screen bg-black text-white overflow-hidden">
       {/* Placeholder for Background Animation */}
       <div className="absolute inset-0 z-0">
-        <Spline
-          scene="https://prod.spline.design/Pmg3OduIGBepD8z7/scene.splinecode" 
+        <Spline scene="https://prod.spline.design/Pmg3OduIGBepD8z7/scene.splinecode" 
         />
       <div className="w-full h-full bg-gradient-to-br from-black via-gray-900 to-black opacity-30"></div>
       </div>
