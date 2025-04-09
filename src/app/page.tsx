@@ -1,9 +1,17 @@
-import Spline from '@splinetool/react-spline/next';
-import { LogIn, UserPlus } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+'use client';
 
+import dynamic from 'next/dynamic';
+import { motion } from "framer-motion";
+import { useRouter } from 'next/navigation';
+
+// Dynamically load Spline only on client side
+const Spline = dynamic(() => import('./Component/ui/SplineClient'), {
+  ssr: false,
+});
 
 export default function Home() {
+  const router = useRouter();
+
   return (
     <div className="relative flex flex-col min-h-screen bg-black text-white overflow-hidden">
       {/* Placeholder for Background Animation */}
@@ -35,10 +43,16 @@ export default function Home() {
           <p className="text-lg md:text-xl text-white/80 max-w-2xl mb-10">
             The World's #1 Software Architecture Designer Tool tailored for multiple Business Sectors
           </p>
-        <button 
-          className="px-6 py-3 bg-green-500 text-white text-lg rounded-full hover:bg-green-600 transition">
+
+        <motion.button
+          onClick={() => router.push('/')}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 1, duration: 0.5 }}
+          className="mt-8 px-8 py-3 bg-gradient-to-r from-green-400 via-teal-400 to-blue-500 text-white font-semibold rounded-full shadow-lg hover:scale-105 transition-transform duration-300 backdrop-blur-md"
+        >
           Get Started
-        </button>
+        </motion.button>
 
           {/* Feature Cards with Soft UI */}
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl px-4">
