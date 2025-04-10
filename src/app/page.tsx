@@ -40,7 +40,7 @@ export default function Home() {
         <main className="flex flex-col items-center justify-center text-center px-6 py-20">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">Welcome to Chartflow AI</h1>
           <p className="text-lg md:text-xl text-white/80 max-w-2xl mb-10">
-            The World's #1 Software Architecture Designer Tool tailored for multiple Business Sectors
+            The  World&apos;s #1 Software Architecture Designer Tool tailored for multiple Business Sectors
           </p>
 
         <motion.button
@@ -58,7 +58,7 @@ export default function Home() {
             <div className="bg-white/10 backdrop-blur rounded-2xl p-6 text-left text-white shadow-[inset_2px_2px_4px_rgba(255,255,255,0.1),_inset_-2px_-2px_4px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_20px_rgba(255,255,255,0.05)] transition-all duration-300">
               <h3 className="text-2xl font-semibold mb-2">Write Business Logic</h3>
               <p className="text-white/70 text-sm">
-                ChartFlow AI helps you design Software Architecture, to provide robust & secure applications for multiple business sectors.
+                ChartFlow AI helps you design Software Architecture, to provide robust &amp; secure applications for multiple business sectors.
               </p>
             </div>
             <div className="bg-white/10 backdrop-blur rounded-2xl p-6 text-left text-white shadow-[inset_2px_2px_4px_rgba(255,255,255,0.1),_inset_-2px_-2px_4px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_20px_rgba(255,255,255,0.05)] transition-all duration-300">
@@ -70,7 +70,7 @@ export default function Home() {
             <div className="bg-white/10 backdrop-blur rounded-2xl p-6 text-left text-white shadow-[inset_2px_2px_4px_rgba(255,255,255,0.1),_inset_-2px_-2px_4px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_20px_rgba(255,255,255,0.05)] transition-all duration-300">
               <h3 className="text-2xl font-semibold mb-2">Get Instant Results</h3>
               <p className="text-white/70 text-sm">
-                Get your downloadable design, detailed SDLC documentation, Future Consideration & Potential Risk Analysis.
+                Get your downloadable design, detailed SDLC documentation, Future Consideration &amp; Potential Risk Analysis.
               </p>
             </div>
           </div>
