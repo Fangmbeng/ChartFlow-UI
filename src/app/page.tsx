@@ -3,9 +3,10 @@
 import dynamic from 'next/dynamic';
 import { motion } from "framer-motion";
 import { useRouter } from 'next/navigation';
+import Footer from '@/components/ui/footer';
 
 // Dynamically load Spline only on client side
-const Spline = dynamic(() => import('./components/ui/SplineClient'), {
+const Spline = dynamic(() => import('./animations/ui/SplineClient'), {
   ssr: false,
 });
 
@@ -25,7 +26,7 @@ export default function Home() {
         <div className="relative z-10 flex flex-col min-h-screen">
         {/* Header */}
         <header className="flex justify-between items-center px-6 py-4 border-b border-white/10 bg-black/60 backdrop-blur">
-          <div className="text-xl font-bold">ChartFlow AI</div>
+          <div className="text-xl font-bold">GitFlow AI</div>
           <div className="space-x-4">
             <button className="px-4 py-2 bg-white text-black rounded hover:bg-gray-200 transition">
               Log in
@@ -38,13 +39,13 @@ export default function Home() {
 
         {/* Main */}
         <main className="flex flex-col items-center justify-center text-center px-6 py-20">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">Welcome to Chartflow AI</h1>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6">Welcome to GitFlow AI</h1>
           <p className="text-lg md:text-xl text-white/80 max-w-2xl mb-10">
-            The  World&apos;s #1 Software Architecture Designer Tool tailored for multiple Business Sectors
+            The  World&apos;s 1st Software Architecture Designer Tool tailored for multiple Business Sectors
           </p>
 
         <motion.button
-          onClick={() => router.push('/')}
+          onClick={() => router.push('/chat')}
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 1, duration: 0.5 }}
@@ -58,13 +59,13 @@ export default function Home() {
             <div className="bg-white/10 backdrop-blur rounded-2xl p-6 text-left text-white shadow-[inset_2px_2px_4px_rgba(255,255,255,0.1),_inset_-2px_-2px_4px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_20px_rgba(255,255,255,0.05)] transition-all duration-300">
               <h3 className="text-2xl font-semibold mb-2">Write Business Logic</h3>
               <p className="text-white/70 text-sm">
-                ChartFlow AI helps you design Software Architecture, to provide robust &amp; secure applications for multiple business sectors.
+                GitFlow AI helps you design Software Architecture, to provide robust &amp; secure applications for multiple business sectors.
               </p>
             </div>
             <div className="bg-white/10 backdrop-blur rounded-2xl p-6 text-left text-white shadow-[inset_2px_2px_4px_rgba(255,255,255,0.1),_inset_-2px_-2px_4px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_20px_rgba(255,255,255,0.05)] transition-all duration-300">
               <h3 className="text-2xl font-semibold mb-2">Generate Design</h3>
               <p className="text-white/70 text-sm">
-                Write or upload your business logic. Chartflow AI is tailored for any technical level, implementing DevSecOps throughout the design.
+                Write or upload your business logic. GitFlow AI is tailored for any technical level, implementing DevSecOps throughout the design.
               </p>
             </div>
             <div className="bg-white/10 backdrop-blur rounded-2xl p-6 text-left text-white shadow-[inset_2px_2px_4px_rgba(255,255,255,0.1),_inset_-2px_-2px_4px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_20px_rgba(255,255,255,0.05)] transition-all duration-300">
@@ -78,9 +79,10 @@ export default function Home() {
         
 
         {/* Footer */}
-        <footer className="text-sm text-white/50 text-center py-6 border-t border-white/10">
-          &copy; {new Date().getFullYear()} ChartFlow AI. All rights reserved.
-        </footer>
+        {/* <footer className="text-sm text-white/50 text-center py-6 border-t border-white/10">
+          &copy; {new Date().getFullYear()} GitFlow AI. All rights reserved.
+        </footer> */}
+        <Footer/>
       </div>
     </div>
   );
