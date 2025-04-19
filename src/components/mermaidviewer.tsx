@@ -20,8 +20,9 @@ export default function MermaidViewer({ code }: MermaidViewerProps) {
       try {
         const { svg } = await mermaid.render(uniqueId, code)
         containerRef.current.innerHTML = svg
-      } catch (error: any) {
-        containerRef.current.innerHTML = `<pre class="text-red-500">Error rendering diagram: ${error.message}</pre>`
+      } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error'
+        containerRef.current.innerHTML = `<pre class="text-red-500">Error rendering diagram: ${errorMessage}</pre>`
       }
     }
 

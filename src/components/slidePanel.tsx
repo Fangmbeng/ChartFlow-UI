@@ -16,16 +16,18 @@ const SlidePanel = ({
   onClose,
   title,
   children,
-  position = "left",
+  position = "left", // Changed default to left
 }: SlidePanelProps) => {
   return (
     <div
-      className={`fixed inset-y-0 ${position}-0 z-50 w-full sm:w-96 transform transition-transform duration-300 bg-white dark:bg-gray-900 shadow-xl border-l dark:border-gray-700 h-full ${
+      className={`fixed inset-y-0 ${position}-0 z-50 w-full sm:w-96 transform transition-transform duration-300 bg-white dark:bg-gray-900 shadow-xl ${
+        position === "left" ? "border-r" : "border-l"
+      } dark:border-gray-700 h-full ${
         isOpen 
-        ? "translate-x-0" 
-        : position === "right" 
-          ? "translate-x-full" 
-          : "-translate-x-full"      
+          ? "translate-x-0" 
+          : position === "right" 
+            ? "translate-x-full" 
+            : "-translate-x-full"
       }`}
     >
       <div className="flex flex-col h-full">

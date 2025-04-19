@@ -162,13 +162,15 @@ export default function GitFlowAI() {
     - Budget constraints: ${params.budget || 'Not specified'}
     - Target audience: ${params.audience || 'Not specified'}
     - Compliance requirements for ${params.businessSector} sector`;
-
+  
     const prompts: { [key: string]: string } = {
       combined: `Generate a complete ${type} architecture for:
       Business: ${params.businessType} in ${params.businessSector}
       Requirements: ${params.prompt}
       Budget: ${params.budget || 'Not specified'}
       Audience: ${params.audience || 'Not specified'}
+      
+      ${securityContext}
       
       Provide THREE SECTIONS separated by ###SECTION###:
       1. Mermaid diagram code ONLY (include security elements, components, relationships)
@@ -177,7 +179,7 @@ export default function GitFlowAI() {
       
       Format EXACTLY as requested. No additional text.`
     };
-
+  
     return prompts.combined;
   };
 
@@ -792,8 +794,8 @@ export default function GitFlowAI() {
           isOpen={isPanelOpen}
           onClose={closePanel}
           title={panelContent.title}
-          position="right"
-        >
+          position="left"
+          >
           <div className="mb-4">
             <Button
               variant="outline"
