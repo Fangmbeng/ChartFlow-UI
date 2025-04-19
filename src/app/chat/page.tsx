@@ -6,11 +6,15 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Download, Upload, History, Send, Clock, Moon, Sun, Laptop } from "lucide-react";
+import { Download, Upload, History, Send, Clock, Moon, Sun, Laptop, AlertCircle,ArrowRight } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-// import { Avatar } from "@/components/ui/avatar";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Badge } from "@/components/ui/badge";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import MermaidViewer from "@/components/mermaidviewer"
+import SlidePanel from "@/components/slidePanel";
+// import { GEMINI_API_KEY, GEMINI_API_URL } from "../../../config/gemini.config";
+import { GROQ_API_KEY, GROQ_API_URL, GROQ_MODELS } from "../../../config/groq.config";
 
 type Diagram = {
   id: number;
@@ -34,11 +38,23 @@ type ResponseData = {
   diagrams: Diagram[];
 };
 
+interface AIPromptParams {
+  prompt: string;
+  businessType: string;
+  businessSector: string;
+  budget?: string;
+  audience?: string;
+  securityRequirements?: string;
+}
+
+
 export default function GitFlowAI() {
   const [prompt, setPrompt] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [businessType, setBusinessType] = useState("");
   const [businessSector, setBusinessSector] = useState("");
+  const [budget, setBudget] = useState("");
+  const [audience, setAudience] = useState("");
   const [responseData, setResponseData] = useState<ResponseData | null>(null);
   const [history, setHistory] = useState<HistoryItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -47,6 +63,78 @@ export default function GitFlowAI() {
   const [selectedHistoryItem, setSelectedHistoryItem] = useState<HistoryItem | null>(null);
   const [viewMode, setViewMode] = useState<'diagram' | 'documentation' | 'risk'>('diagram');
   const [selectedDiagram, setSelectedDiagram] = useState<Diagram | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
+  const [panelContent, setPanelContent] = useState<{
+    title: string;
+    content: React.ReactNode;
+  } | null>(null);
+  
+  const openPanel = (title: string, content: React.ReactNode) => {
+    setPanelContent({ title, content });
+    setIsPanelOpen(true);
+  };
+  
+  const closePanel = () => {
+    setIsPanelOpen(false);
+  };
+  const viewDiagramInSidePanel = (diagram: Diagram, mode: 'diagram' | 'documentation' | 'risk') => {
+    let content;
+    
+    if (mode === 'diagram' && diagram?.mermaidCode) {
+      content = <MermaidViewer code={diagram.mermaidCode} />;
+    } else if (mode === 'documentation') {
+      content = (
+        <div className="prose dark:prose-invert max-w-none">
+          {diagram.documentation?.split('\n').map((line, i) => (
+            <React.Fragment key={i}>
+              {line.startsWith('# ') ? (
+              <h1 className="text-2xl font-bold mb-4">{line.substring(2)}</h1>
+            ) : line.startsWith('## ') ? (
+              <h2 className="text-xl font-semibold mt-6 mb-3">{line.substring(3)}</h2>
+            ) : line.startsWith('- ') ? (
+              <li className="ml-4">{line.substring(2)}</li>
+            ) : line.startsWith('1.') || line.startsWith('2.') || line.startsWith('3.') || line.startsWith('4.') ? (
+              <div className="flex items-start mt-1">
+                <span className="font-medium mr-2">{line.split('.')[0]}.</span>
+                <span>{line.split('.').slice(1).join('.')}</span>
+              </div>
+            ) : (
+              <p className="my-2">{line}</p>
+            )}
+            </React.Fragment>
+          ))}
+        </div>
+      );
+    } else if (mode === 'risk') {
+      content = (
+        <div className="prose dark:prose-invert max-w-none">
+          {diagram.riskAnalysis?.split('\n').map((line, i) => (
+            <React.Fragment key={i}>
+            {line.startsWith('# ') ? (
+              <h1 className="text-2xl font-bold mb-4">{line.substring(2)}</h1>
+            ) : line.startsWith('## ') ? (
+              <h2 className="text-xl font-semibold mt-6 mb-3">{line.substring(3)}</h2>
+            ) : line.startsWith('1.') || line.startsWith('2.') || line.startsWith('3.') || line.startsWith('4.') ? (
+              <div className="flex items-start mt-1">
+                <span className="font-medium mr-2">{line.split('.')[0]}.</span>
+                <div>
+                  <span className="font-medium">{line.split(':')[0].split('.').slice(1).join('.')}:</span>
+                  <span>{line.split(':').slice(1).join(':')}</span>
+                </div>
+              </div>
+            ) : (
+              <p className="my-2">{line}</p>
+            )}
+          </React.Fragment>
+          ))}
+        </div>
+      );
+    }
+    
+    const title = `${diagram.title} - ${mode.charAt(0).toUpperCase() + mode.slice(1)}`;
+    openPanel(title, content);
+  };
 
   // Detect system theme preference
   useEffect(() => {
@@ -65,135 +153,137 @@ export default function GitFlowAI() {
     }
   }, [theme]);
 
-  // Generate mermaid diagram based on prompt
-  const generateMermaidDiagram = (requirements: string, type: string, sector: string): string => {
-    // This is a simplified example - in a real application, you'd call an AI API
-    // For now, let's return a sample architecture diagram based on the business sector
-    
-    if (sector === "fintech") {
-      return `
-graph TD
-    Client[Client App] --> API[API Gateway]
-    API --> Auth[Auth Service]
-    API --> Trans[Transaction Service]
-    API --> Acc[Account Service]
-    Trans --> DB[(Transaction DB)]
-    Acc --> DB2[(Account DB)]
-    Auth --> DB3[(User DB)]
-    Trans --> MQ[Message Queue]
-    MQ --> Analytics[Analytics Service]
-    Analytics --> DW[(Data Warehouse)]
-`;
-    } else if (sector === "ecommerce") {
-      return `
-graph TD
-    Client[Web/Mobile Client] --> CDN[CDN]
-    CDN --> API[API Gateway]
-    API --> Auth[Auth Service]
-    API --> Catalog[Product Catalog]
-    API --> Cart[Shopping Cart]
-    API --> Order[Order Management]
-    API --> Payment[Payment Processing]
-    Catalog --> ProductDB[(Product DB)]
-    Cart --> CartDB[(Cart DB)]
-    Order --> OrderDB[(Order DB)]
-    Order --> MQ[Message Queue]
-    MQ --> Shipping[Shipping Service]
-    MQ --> Inventory[Inventory Service]
-    MQ --> Analytics[Analytics Engine]
-`;
-    } else {
-      return `
-graph TD
-    Client[Client Applications] --> API[API Gateway]
-    API --> Auth[Authentication]
-    API --> Core[Core Service]
-    Core --> DB[(Database)]
-    Core --> Cache[(Cache)]
-    Core --> Queue[Message Queue]
-    Queue --> Worker[Background Workers]
-    Worker --> Storage[(Object Storage)]
-`;
+  // Generate AI prompts based on user input and architecture type
+  // Generate AI prompts optimized for Groq
+  const generateAIPrompt = (type: string, params: AIPromptParams) => {
+    const securityContext = `Security considerations:
+    - SDLC integration: Implement security checkpoints at each development phase
+    - Risk assessment based on business type (${params.businessType}) and sector (${params.businessSector})
+    - Budget constraints: ${params.budget || 'Not specified'}
+    - Target audience: ${params.audience || 'Not specified'}
+    - Compliance requirements for ${params.businessSector} sector`;
+
+    const prompts: { [key: string]: string } = {
+      combined: `Generate a complete ${type} architecture for:
+      Business: ${params.businessType} in ${params.businessSector}
+      Requirements: ${params.prompt}
+      Budget: ${params.budget || 'Not specified'}
+      Audience: ${params.audience || 'Not specified'}
+      
+      Provide THREE SECTIONS separated by ###SECTION###:
+      1. Mermaid diagram code ONLY (include security elements, components, relationships)
+      2. Documentation (architecture overview, component descriptions, deployment strategy, CI/CD, monitoring)
+      3. Risk analysis (security risks, scalability challenges, compliance, business continuity, mitigation strategies)
+      
+      Format EXACTLY as requested. No additional text.`
+    };
+
+    return prompts.combined;
+  };
+
+  // Call Groq API with retry logic
+  const callGroq = async (prompt: string, retries = 3): Promise<string> => {
+    try {
+      const response = await fetch(GROQ_API_URL, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${GROQ_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          model: GROQ_MODELS.LLAMA3_3_70B, // Using LLaMA 3.3 70B
+          messages: [
+            {
+              role: "system",
+              content: "You are an expert software architect with deep knowledge of security best practices, SDLC, and compliance requirements. Provide responses in the exact format requested."
+            },
+            {
+              role: "user",
+              content: prompt
+            }
+          ],
+          temperature: 0.7,
+          max_tokens: 8192,
+          top_p: 0.95,
+        }),
+      });
+
+      if (response.status === 429 && retries > 0) {
+        // Exponential backoff for rate limits
+        await new Promise(r => setTimeout(r, Math.pow(2, 4 - retries) * 1000));
+        return callGroq(prompt, retries - 1);
+      }
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => null);
+        throw new Error(`API error: ${response.status} - ${errorData?.error?.message || response.statusText}`);
+      }
+
+      const data = await response.json();
+      return data.choices[0].message.content;
+    } catch (error) {
+      if (retries > 0) {
+        await new Promise(r => setTimeout(r, Math.pow(2, 4 - retries) * 1000));
+        return callGroq(prompt, retries - 1);
+      }
+      throw error;
     }
-  };
-
-  // Generate documentation based on architecture
-  const generateDocumentation = (mermaidCode: string, type: string, sector: string): string => {
-    // In a real app, you'd use an AI to generate this based on the diagram
-    return `# Architecture Documentation
-
-## Overview
-This architecture is designed for a ${type} in the ${sector} sector, focusing on scalability, security, and maintainability.
-
-## Components
-- **Client Applications**: Web and mobile interfaces for user interaction
-- **API Gateway**: Central entry point that routes requests to appropriate services
-- **Authentication Service**: Handles user authentication and authorization
-- **Core Services**: Business logic implementation
-- **Databases**: Persistent storage for application data
-- **Message Queue**: Facilitates asynchronous communication between services
-
-## Design Considerations
-- Microservices architecture for component isolation
-- RESTful API design for service communication
-- Database sharding for horizontal scaling
-- Containerized deployment for consistent environments
-
-## Implementation Guidelines
-1. Use API-first development approach
-2. Implement CI/CD pipelines for automated testing and deployment
-3. Utilize container orchestration for service management
-4. Implement comprehensive monitoring and logging`;
-  };
-
-  // Generate risk analysis
-  const generateRiskAnalysis = (mermaidCode: string, type: string, sector: string): string => {
-    // In a real app, you'd use an AI to generate this
-    return `# Risk Analysis & Future Considerations
-
-## Current Risks
-1. **Scalability Challenges**: The current architecture may face bottlenecks at the database layer during peak usage periods.
-2. **Security Vulnerabilities**: API Gateway requires robust authentication mechanisms to prevent unauthorized access.
-3. **Service Dependencies**: Tight coupling between certain services could lead to cascading failures.
-
-## Mitigation Strategies
-1. Implement database read replicas and consider NoSQL options for specific high-volume data
-2. Deploy Web Application Firewall (WAF) and implement rate limiting
-3. Adopt circuit breaker patterns and fallback mechanisms
-
-## Future Considerations
-1. **AI Integration**: Consider adding machine learning models for predictive analytics
-2. **Blockchain Implementation**: Explore distributed ledger technology for improved transparency (${sector === 'fintech' ? 'especially relevant for financial transactions' : ''})
-3. **Edge Computing**: Evaluate moving certain processing closer to end users for reduced latency
-4. **Serverless Architecture**: Consider migrating appropriate services to serverless functions for improved scalability and cost efficiency`;
   };
 
   const handleGenerate = async () => {
     if (!prompt || !businessType || !businessSector) {
-      alert("Please fill in all required fields");
+      setError("Please fill in all required fields");
+      return;
+    }
+
+    if (!GROQ_API_KEY) {
+      setError("Groq API key is not configured. Please set NEXT_PUBLIC_GROQ_API_KEY in your environment.");
       return;
     }
     
     setIsLoading(true);
+    setError(null);
     
-    // Simulate API call delay
-    setTimeout(() => {
-      // Generate diagrams using AI (simulated here)
+    try {
       const architectureTypes = ["Microservices", "Event-Driven", "Serverless"];
-      const generatedDiagrams = architectureTypes.map((archType, index) => {
-        const mermaidCode = generateMermaidDiagram(prompt, businessType, businessSector);
-        const documentation = generateDocumentation(mermaidCode, businessType, businessSector);
-        const riskAnalysis = generateRiskAnalysis(mermaidCode, businessType, businessSector);
-        
-        return {
-          id: index + 1,
-          title: `${archType} Architecture`,
-          mermaidCode,
-          documentation,
-          riskAnalysis,
-          timestamp: new Date().toISOString()
+      const generatedDiagrams: Diagram[] = [];
+
+      for (let i = 0; i < architectureTypes.length; i++) {
+        const archType = architectureTypes[i];
+        const params: AIPromptParams = {
+          prompt,
+          businessType,
+          businessSector,
+          budget,
+          audience
         };
-      });
+
+        const combinedPrompt = generateAIPrompt(archType, params);
+        
+        // Add delay between requests to avoid rate limits
+        if (i > 0) {
+          await new Promise(r => setTimeout(r, 1000));
+        }
+        
+        const response = await callGroq(combinedPrompt);
+        
+        // Parse the response to extract three sections
+        const sections = response.split('###SECTION###').map((s: string) => s.trim());
+        
+        if (sections.length >= 3) {
+          generatedDiagrams.push({
+            id: i + 1,
+            title: `${archType} Architecture`,
+            mermaidCode: extractMermaidCode(sections[0]),
+            documentation: sections[1],
+            riskAnalysis: sections[2],
+            timestamp: new Date().toISOString()
+          });
+        } else {
+          console.warn(`Invalid response format for ${archType} architecture`);
+          throw new Error('Invalid response format from AI');
+        }
+      }
       
       const newResponseData = { diagrams: generatedDiagrams };
       setResponseData(newResponseData);
@@ -209,17 +299,41 @@ This architecture is designed for a ${type} in the ${sector} sector, focusing on
       };
       
       setHistory(prev => [historyItem, ...prev]);
+    } catch (error) {
+      console.error('Error generating architecture:', error);
+      setError(`Failed to generate architecture: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    } finally {
       setIsLoading(false);
-    }, 1500);
+    }
   };
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // Helper function to extract mermaid code from potential markdown code blocks
+  const extractMermaidCode = (response: string): string => {
+    // Check if response is wrapped in markdown code block
+    const mermaidBlockRegex = /```(?:mermaid)?\s*([\s\S]*?)```/;
+    const match = response.match(mermaidBlockRegex);
+    
+    if (match && match[1]) {
+      return match[1].trim();
+    }
+    
+    // If not in a code block, return as is
+    return response.trim();
+  };
+
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
-      setFile(e.target.files[0]);
+      const uploadedFile = e.target.files[0];
+      setFile(uploadedFile);
       
-      // In a real app, you would extract text from the file
-      // For now, let's simulate this with a placeholder
-      setPrompt(`Processing requirements from: ${e.target.files[0].name}\n\nExtracted requirements will appear here...`);
+      // Read file content
+      const reader = new FileReader();
+      reader.onload = async (event) => {
+        const content = event.target?.result as string;
+        setPrompt(content);
+      };
+      reader.readAsText(uploadedFile);
     }
   };
 
@@ -235,6 +349,40 @@ This architecture is designed for a ${type} in the ${sector} sector, focusing on
   const viewDiagramDetails = (diagram: Diagram, mode: 'diagram' | 'documentation' | 'risk') => {
     setSelectedDiagram(diagram);
     setViewMode(mode);
+  };
+
+  const downloadAsset = (diagram: Diagram, type: 'diagram' | 'documentation' | 'risk') => {
+    let content = '';
+    let filename = '';
+    let mimeType = '';
+
+    switch (type) {
+      case 'diagram':
+        content = diagram.mermaidCode || '';
+        filename = `${diagram.title.toLowerCase().replace(/\s+/g, '-')}-diagram.mmd`;
+        mimeType = 'text/plain';
+        break;
+      case 'documentation':
+        content = diagram.documentation || '';
+        filename = `${diagram.title.toLowerCase().replace(/\s+/g, '-')}-documentation.md`;
+        mimeType = 'text/markdown';
+        break;
+      case 'risk':
+        content = diagram.riskAnalysis || '';
+        filename = `${diagram.title.toLowerCase().replace(/\s+/g, '-')}-risk-analysis.md`;
+        mimeType = 'text/markdown';
+        break;
+    }
+
+    const blob = new Blob([content], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
   return (
@@ -284,6 +432,13 @@ This architecture is designed for a ${type} in the ${sector} sector, focusing on
             </TooltipProvider>
           </div>
         </header>
+
+        {error && (
+          <Alert variant="destructive" className="mb-6">
+            <AlertCircle className="h-4 w-4" />
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        )}
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid grid-cols-2 mb-8">
@@ -337,6 +492,38 @@ This architecture is designed for a ${type} in the ${sector} sector, focusing on
                   </SelectContent>
                 </Select>
               </div>
+
+              <div className="backdrop-blur-md bg-white/40 dark:bg-gray-800/40 rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-700">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Budget Range</label>
+                <Select onValueChange={setBudget} value={budget}>
+                  <SelectTrigger className="w-full backdrop-blur-sm bg-white/80 dark:bg-gray-700/80 border-0 shadow-sm">
+                    <SelectValue placeholder="Select Budget Range" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="minimal">Minimal (&lt;$50K)</SelectItem>
+                    <SelectItem value="low">Low ($50K - $200K)</SelectItem>
+                    <SelectItem value="medium">Medium ($200K - $1M)</SelectItem>
+                    <SelectItem value="high">High ($1M - $5M)</SelectItem>
+                    <SelectItem value="enterprise">Enterprise (&gt;$5M)</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="backdrop-blur-md bg-white/40 dark:bg-gray-800/40 rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-700">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Target Audience</label>
+                <Select onValueChange={setAudience} value={audience}>
+                  <SelectTrigger className="w-full backdrop-blur-sm bg-white/80 dark:bg-gray-700/80 border-0 shadow-sm">
+                    <SelectValue placeholder="Select Target Audience" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="consumer">General Consumers</SelectItem>
+                    <SelectItem value="business">Business Users</SelectItem>
+                    <SelectItem value="developer">Developers</SelectItem>
+                    <SelectItem value="enterprise">Enterprise Clients</SelectItem>
+                    <SelectItem value="government">Government Organizations</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
 
             <div className="backdrop-blur-md bg-white/40 dark:bg-gray-800/40 rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-700">
@@ -351,7 +538,7 @@ This architecture is designed for a ${type} in the ${sector} sector, focusing on
               <div className="flex flex-wrap items-center gap-4 mt-4">
                 <label className="flex items-center cursor-pointer px-4 py-2 rounded-lg backdrop-blur-sm bg-white/80 dark:bg-gray-700/80 shadow-sm hover:bg-white/90 dark:hover:bg-gray-700/90 transition-all">
                   <Upload className="mr-2 h-5 w-5" />
-                  <Input type="file" onChange={handleFileUpload} className="hidden" />
+                  <Input type="file" onChange={handleFileUpload} className="hidden" accept=".txt,.md,.pdf,.docx" />
                   <span className="text-sm">{file ? file.name : "Upload Business Plan / Requirements"}</span>
                 </label>
 
@@ -414,10 +601,20 @@ This architecture is designed for a ${type} in the ${sector} sector, focusing on
                           >
                             🧠 Future Considerations & Risk
                           </Button>
+
+                          {/* Add a new button for the side panel */}
+                          <Button 
+                            variant="outline" 
+                            className="w-full shadow-sm backdrop-blur-sm bg-white/80 dark:bg-gray-700/80 mt-2"
+                            onClick={() => viewDiagramInSidePanel(diagram, 'diagram')}
+                          >
+                            <ArrowRight className="mr-2 h-4 w-4" /> Quick View
+                          </Button>
                           
                           <Button 
                             variant="ghost" 
                             className="w-full text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                            onClick={() => downloadAsset(diagram, 'diagram')}
                           >
                             <Download className="mr-2 h-4 w-4" /> Download Assets
                           </Button>
@@ -438,16 +635,10 @@ This architecture is designed for a ${type} in the ${sector} sector, focusing on
                   </div>
                   
                   <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
-                    {viewMode === 'diagram' && (
-                      <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl overflow-auto">
-                        <pre className="text-xs">{selectedDiagram.mermaidCode}</pre>
-                        {/* In a real app, you would render the Mermaid diagram here */}
-                        <div className="text-center text-gray-500 dark:text-gray-400 mt-4">
-                          [Mermaid diagram would render here in the actual app]
-                        </div>
-                      </div>
-                    )}
-                    
+                  {viewMode === 'diagram' && selectedDiagram?.mermaidCode && (
+                    <MermaidViewer code={selectedDiagram.mermaidCode} />
+                  )}
+                                      
                     {viewMode === 'documentation' && (
                       <div className="prose dark:prose-invert max-w-none">
                         {selectedDiagram.documentation?.split('\n').map((line, i) => (
@@ -520,7 +711,11 @@ This architecture is designed for a ${type} in the ${sector} sector, focusing on
                         Risk Analysis
                       </Button>
                     </div>
-                    <Button variant="outline" size="sm">
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => downloadAsset(selectedDiagram, viewMode)}
+                    >
                       <Download className="mr-2 h-4 w-4" /> Export
                     </Button>
                   </div>
@@ -585,6 +780,44 @@ This architecture is designed for a ${type} in the ${sector} sector, focusing on
           </TabsContent>
         </Tabs>
       </div>
+
+        {/* Add the new slide panel component */}
+        {isPanelOpen && panelContent && (
+      <>
+        <div 
+          className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40"
+          onClick={closePanel}
+        ></div>
+        <SlidePanel
+          isOpen={isPanelOpen}
+          onClose={closePanel}
+          title={panelContent.title}
+          position="right"
+        >
+          <div className="mb-4">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => {
+                if (selectedDiagram) {
+                  const mode = panelContent.title.toLowerCase().includes('diagram') 
+                    ? 'diagram' 
+                    : panelContent.title.toLowerCase().includes('documentation')
+                      ? 'documentation'
+                      : 'risk';
+                  downloadAsset(selectedDiagram, mode as 'diagram' | 'documentation' | 'risk');
+                }
+              }}
+              className="flex items-center"
+            >
+              <Download className="mr-2 h-4 w-4" /> Export
+            </Button>
+          </div>
+          {panelContent.content}
+        </SlidePanel>
+      </>
+    )}
+
 
       <footer className="text-center text-gray-500 dark:text-gray-400 text-sm py-8">
         <p>GitFlow AI • Intelligent Architecture Generator • © 2025</p>

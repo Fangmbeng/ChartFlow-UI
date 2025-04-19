@@ -39,9 +39,9 @@ export default function Home() {
 
         {/* Main */}
         <main className="flex flex-col items-center justify-center text-center px-6 py-20">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">Welcome to GitFlow AI</h1>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6">GitFlow AI</h1>
           <p className="text-lg md:text-xl text-white/80 max-w-2xl mb-10">
-            The  World&apos;s 1st Software Architecture Designer Tool tailored for multiple Business Sectors
+          Welcome to the  World&apos;s 1st Software Architecture Designer Tool tailored for multiple Business Sectors
           </p>
 
         <motion.button
