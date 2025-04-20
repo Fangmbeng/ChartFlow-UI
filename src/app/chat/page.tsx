@@ -15,6 +15,8 @@ import MermaidViewer from "@/components/mermaidviewer"
 import SlidePanel from "@/components/slidePanel";
 // import { GEMINI_API_KEY, GEMINI_API_URL } from "../../../config/gemini.config";
 import { GROQ_API_KEY, GROQ_API_URL, GROQ_MODELS } from "../../../config/groq.config";
+import Navbar from '@/components/ui/navbar';
+
 
 type Diagram = {
   id: number;
@@ -68,40 +70,45 @@ export default function GitFlowAI() {
   const [panelContent, setPanelContent] = useState<{
     title: string;
     content: React.ReactNode;
+    diagram: Diagram | null;
+    contentType: 'diagram' | 'documentation' | 'risk';
   } | null>(null);
   
-  const openPanel = (title: string, content: React.ReactNode) => {
-    setPanelContent({ title, content });
+  // Add these functions inside your component
+  const openPanel = (title: string, content: React.ReactNode, diagram: Diagram, contentType: 'diagram' | 'documentation' | 'risk') => {
+    setPanelContent({ title, content, diagram, contentType });
     setIsPanelOpen(true);
   };
-  
+
   const closePanel = () => {
     setIsPanelOpen(false);
   };
+
   const viewDiagramInSidePanel = (diagram: Diagram, mode: 'diagram' | 'documentation' | 'risk') => {
     let content;
     
     if (mode === 'diagram' && diagram?.mermaidCode) {
+      console.log("Rendering Mermaid code:", diagram.mermaidCode);
       content = <MermaidViewer code={diagram.mermaidCode} />;
-    } else if (mode === 'documentation') {
+          } else if (mode === 'documentation') {
       content = (
         <div className="prose dark:prose-invert max-w-none">
           {diagram.documentation?.split('\n').map((line, i) => (
             <React.Fragment key={i}>
               {line.startsWith('# ') ? (
-              <h1 className="text-2xl font-bold mb-4">{line.substring(2)}</h1>
-            ) : line.startsWith('## ') ? (
-              <h2 className="text-xl font-semibold mt-6 mb-3">{line.substring(3)}</h2>
-            ) : line.startsWith('- ') ? (
-              <li className="ml-4">{line.substring(2)}</li>
-            ) : line.startsWith('1.') || line.startsWith('2.') || line.startsWith('3.') || line.startsWith('4.') ? (
-              <div className="flex items-start mt-1">
-                <span className="font-medium mr-2">{line.split('.')[0]}.</span>
-                <span>{line.split('.').slice(1).join('.')}</span>
-              </div>
-            ) : (
-              <p className="my-2">{line}</p>
-            )}
+                <h1 className="text-2xl font-bold mb-4">{line.substring(2)}</h1>
+              ) : line.startsWith('## ') ? (
+                <h2 className="text-xl font-semibold mt-6 mb-3">{line.substring(3)}</h2>
+              ) : line.startsWith('- ') ? (
+                <li className="ml-4">{line.substring(2)}</li>
+              ) : line.startsWith('1.') || line.startsWith('2.') || line.startsWith('3.') || line.startsWith('4.') ? (
+                <div className="flex items-start mt-1">
+                  <span className="font-medium mr-2">{line.split('.')[0]}.</span>
+                  <span>{line.split('.').slice(1).join('.')}</span>
+                </div>
+              ) : (
+                <p className="my-2">{line}</p>
+              )}
             </React.Fragment>
           ))}
         </div>
@@ -111,30 +118,30 @@ export default function GitFlowAI() {
         <div className="prose dark:prose-invert max-w-none">
           {diagram.riskAnalysis?.split('\n').map((line, i) => (
             <React.Fragment key={i}>
-            {line.startsWith('# ') ? (
-              <h1 className="text-2xl font-bold mb-4">{line.substring(2)}</h1>
-            ) : line.startsWith('## ') ? (
-              <h2 className="text-xl font-semibold mt-6 mb-3">{line.substring(3)}</h2>
-            ) : line.startsWith('1.') || line.startsWith('2.') || line.startsWith('3.') || line.startsWith('4.') ? (
-              <div className="flex items-start mt-1">
-                <span className="font-medium mr-2">{line.split('.')[0]}.</span>
-                <div>
-                  <span className="font-medium">{line.split(':')[0].split('.').slice(1).join('.')}:</span>
-                  <span>{line.split(':').slice(1).join(':')}</span>
+              {line.startsWith('# ') ? (
+                <h1 className="text-2xl font-bold mb-4">{line.substring(2)}</h1>
+              ) : line.startsWith('## ') ? (
+                <h2 className="text-xl font-semibold mt-6 mb-3">{line.substring(3)}</h2>
+              ) : line.startsWith('1.') || line.startsWith('2.') || line.startsWith('3.') || line.startsWith('4.') ? (
+                <div className="flex items-start mt-1">
+                  <span className="font-medium mr-2">{line.split('.')[0]}.</span>
+                  <div>
+                    <span className="font-medium">{line.split(':')[0].split('.').slice(1).join('.')}:</span>
+                    <span>{line.split(':').slice(1).join(':')}</span>
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <p className="my-2">{line}</p>
-            )}
-          </React.Fragment>
+              ) : (
+                <p className="my-2">{line}</p>
+              )}
+            </React.Fragment>
           ))}
         </div>
       );
     }
     
     const title = `${diagram.title} - ${mode.charAt(0).toUpperCase() + mode.slice(1)}`;
-    openPanel(title, content);
-  };
+    openPanel(title, content, diagram, mode);
+  };  
 
   // Detect system theme preference
   useEffect(() => {
@@ -173,7 +180,7 @@ export default function GitFlowAI() {
       ${securityContext}
       
       Provide THREE SECTIONS separated by ###SECTION###:
-      1. Mermaid diagram code ONLY (include security elements, components, relationships)
+      1. Mermaid flowchart code ONLY using graph LR syntax (no 'participant' or 'sequenceDiagram' keywords). Use nodes and arrows like A --> B.
       2. Documentation (architecture overview, component descriptions, deployment strategy, CI/CD, monitoring)
       3. Risk analysis (security risks, scalability challenges, compliance, business continuity, mitigation strategies)
       
@@ -232,6 +239,16 @@ export default function GitFlowAI() {
     }
   };
 
+  const extractMermaidCode = (response: string): string => {
+    const mermaidBlockRegex = /```(?:mermaid)?\s*([\s\S]*?)```/;
+    const match = response.match(mermaidBlockRegex);
+    if (match && match[1]) return match[1].trim();
+  
+    // Fallback: assume it's raw Mermaid code without code fences
+    return response.trim();
+  };
+  
+
   const handleGenerate = async () => {
     if (!prompt || !businessType || !businessSector) {
       setError("Please fill in all required fields");
@@ -270,23 +287,55 @@ export default function GitFlowAI() {
         const response = await callGroq(combinedPrompt);
         
         // Parse the response to extract three sections
-        const sections = response.split('###SECTION###').map((s: string) => s.trim());
+        console.log("🧾 Raw AI response for architecture:", archType, "\n", response);
+
+        // Try parsing sections
+        const sections = response
+          .split('###SECTION###')
+          .map((s: string) => s.trim())
+          .filter(Boolean); // remove empty sections
         
-        if (sections.length >= 3) {
+        if (sections.length !== 3) {
+          console.error("❌ Expected 3 sections but got:", sections.length);
+          sections.forEach((sec, i) => console.warn(`-- Section ${i + 1}:\n`, sec));
+          throw new Error(`AI response for ${archType} is malformed.`);
+        }
+
+        const [rawMermaid, rawDoc, rawRisk] = sections;
+
+        console.log("✅ Mermaid Section:", rawMermaid);
+        console.log("📄 Documentation Section:", rawDoc);
+        console.log("🧠 Risk Analysis Section:", rawRisk);
+
+        generatedDiagrams.push({
+          id: i + 1,
+          title: `${archType} Architecture`,
+          mermaidCode: extractMermaidCode(rawMermaid),
+          documentation: rawDoc,
+          riskAnalysis: rawRisk,
+          timestamp: new Date().toISOString(),
+        });
+        
+        if (sections.length !== 3) {
+          const testDiagram = `
+            graph LR
+              A[Client] --> B[Gateway]
+              B --> C[Service A]
+              C --> D[Database]
+          `;
+        
           generatedDiagrams.push({
             id: i + 1,
-            title: `${archType} Architecture`,
-            mermaidCode: extractMermaidCode(sections[0]),
-            documentation: sections[1],
-            riskAnalysis: sections[2],
-            timestamp: new Date().toISOString()
+            title: `${archType} - Fallback Diagram`,
+            mermaidCode: testDiagram,
+            documentation: "Fallback documentation.",
+            riskAnalysis: "Fallback risk analysis.",
+            timestamp: new Date().toISOString(),
           });
-        } else {
-          console.warn(`Invalid response format for ${archType} architecture`);
-          throw new Error('Invalid response format from AI');
+        
+          return; // skip the rest
         }
-      }
-      
+        
       const newResponseData = { diagrams: generatedDiagrams };
       setResponseData(newResponseData);
       
@@ -301,6 +350,7 @@ export default function GitFlowAI() {
       };
       
       setHistory(prev => [historyItem, ...prev]);
+    }
     } catch (error) {
       console.error('Error generating architecture:', error);
       setError(`Failed to generate architecture: ${error instanceof Error ? error.message : 'Unknown error'}`);
@@ -308,21 +358,6 @@ export default function GitFlowAI() {
       setIsLoading(false);
     }
   };
-
-  // Helper function to extract mermaid code from potential markdown code blocks
-  const extractMermaidCode = (response: string): string => {
-    // Check if response is wrapped in markdown code block
-    const mermaidBlockRegex = /```(?:mermaid)?\s*([\s\S]*?)```/;
-    const match = response.match(mermaidBlockRegex);
-    
-    if (match && match[1]) {
-      return match[1].trim();
-    }
-    
-    // If not in a code block, return as is
-    return response.trim();
-  };
-
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -389,6 +424,7 @@ export default function GitFlowAI() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 transition-colors duration-200">
+      <Navbar/>
       <div className="backdrop-blur-sm bg-white/70 dark:bg-gray-900/70 shadow-xl rounded-xl max-w-7xl mx-auto my-8 p-6">
         <header className="flex justify-between items-center mb-8">
           <div>
@@ -783,31 +819,19 @@ export default function GitFlowAI() {
         </Tabs>
       </div>
 
-        {/* Add the new slide panel component */}
-        {isPanelOpen && panelContent && (
-      <>
-        <div 
-          className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40"
-          onClick={closePanel}
-        ></div>
+      {isPanelOpen && panelContent && (
         <SlidePanel
           isOpen={isPanelOpen}
           onClose={closePanel}
           title={panelContent.title}
-          position="left"
-          >
+        >
           <div className="mb-4">
             <Button
               variant="outline"
               size="sm"
               onClick={() => {
-                if (selectedDiagram) {
-                  const mode = panelContent.title.toLowerCase().includes('diagram') 
-                    ? 'diagram' 
-                    : panelContent.title.toLowerCase().includes('documentation')
-                      ? 'documentation'
-                      : 'risk';
-                  downloadAsset(selectedDiagram, mode as 'diagram' | 'documentation' | 'risk');
+                if (panelContent.diagram) {
+                  downloadAsset(panelContent.diagram, panelContent.contentType);
                 }
               }}
               className="flex items-center"
@@ -817,9 +841,7 @@ export default function GitFlowAI() {
           </div>
           {panelContent.content}
         </SlidePanel>
-      </>
-    )}
-
+      )}
 
       <footer className="text-center text-gray-500 dark:text-gray-400 text-sm py-8">
         <p>GitFlow AI • Intelligent Architecture Generator • © 2025</p>

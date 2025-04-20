@@ -4,6 +4,9 @@ import dynamic from 'next/dynamic';
 import { motion } from "framer-motion";
 import { useRouter } from 'next/navigation';
 import Footer from '@/components/ui/footer';
+import Navbar from '@/components/ui/navbar';
+import Image from "next/image";
+import { Star } from "lucide-react";
 
 // Dynamically load Spline only on client side
 const Spline = dynamic(() => import('./animations/ui/SplineClient'), {
@@ -25,21 +28,20 @@ export default function Home() {
         {/* Foreground Content */}
         <div className="relative z-10 flex flex-col min-h-screen">
         {/* Header */}
-        <header className="flex justify-between items-center px-6 py-4 border-b border-white/10 bg-black/60 backdrop-blur">
-          <div className="text-xl font-bold">GitFlow AI</div>
-          <div className="space-x-4">
-            <button className="px-4 py-2 bg-white text-black rounded hover:bg-gray-200 transition">
-              Log in
-            </button>
-            <button className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition">
-              Sign up
-            </button>
-          </div>
-        </header>
+        <Navbar/>
 
         {/* Main */}
         <main className="flex flex-col items-center justify-center text-center px-6 py-20">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">GitFlow AI</h1>
+        <div className="flex items-center justify-center gap-4 mb-6">
+          <Image
+            src="/partners/OIP (3).jpeg"
+            alt="GitFlow AI Logo"
+            width={48}
+            height={48}
+            className="object-contain"
+          />
+          <h1 className="text-5xl md:text-6xl font-bold">GitFlow AI</h1>
+        </div>
           <p className="text-lg md:text-xl text-white/80 max-w-2xl mb-10">
           Welcome to the  World&apos;s 1st Software Architecture Designer Tool tailored for multiple Business Sectors
           </p>
@@ -76,6 +78,70 @@ export default function Home() {
             </div>
           </div>
         </main>
+
+
+      {/* Screenshot Showcase with fade motion */}
+      <div className="mt-24 flex flex-col items-center">
+        <h2 className="text-3xl font-bold mb-6">See GitFlow AI in Action</h2>
+        <div className="relative w-full max-w-6xl h-[500px] sm:h-[600px] overflow-hidden">
+          {[1, 2, 3].map((i) => (
+            <motion.div
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 1, 0] }}
+            transition={{ duration: 12, delay: i * 2, repeat: Infinity }}
+            className="absolute inset-0 flex justify-center items-center"
+          >
+          <Image
+            src={`/screens/screen${i}.png`}
+            alt={`Screenshot ${i}`}
+            fill
+            className="rounded-xl object-contain"
+            sizes="(max-width: 1024px) 100vw, 1000px"
+          />
+          </motion.div>
+
+          ))}
+        </div>
+      </div>
+
+      {/* Partner Logos + Rating Bar */}
+      <div className="mt-32 py-12 px-6 bg-gradient-to-b from-black via-gray-900 to-black w-full flex flex-col items-center gap-8">
+          {/* Title */}
+        <h3 className="text-white text-sm uppercase tracking-widest font-medium opacity-70">
+          Powered by
+        </h3>
+        <div className="flex gap-12 items-center justify-center animate-slideSlow overflow-hidden">
+        {[
+          { name: 'Coding Temple Alumini', url: 'https://www.linkedin.com/showcase/coding-temple-alumni/about/' },
+          { name: 'myskinci', url: 'https://myskinci.com/home'},
+          { name: 'groq_1', url: 'https://console.groq.com/docs/overview' },
+          { name: 'vercel', url: 'https://console.groq.com/docs/overview' },
+            ].map((partner, i) => (
+              <a
+                key={i}
+                href={partner.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="opacity-70 hover:opacity-100 transition-opacity"
+              >
+                <Image
+                  src={`/partners/${partner.name}.jpeg`}
+                  alt={`${partner.name} logo`}
+                  width={100}
+                  height={30}
+                />
+              </a>
+            ))}
+        </div>
+
+        <div className="flex items-center gap-2 text-yellow-400">
+          {[1, 2, 3, 4, 5].map((i) => (
+            <Star key={i} className={i <= 4 ? "fill-current" : "opacity-30"} />
+          ))}
+          <span className="text-white text-sm ml-2">4.8/5 average rating</span>
+        </div>
+      </div>
         
 
         {/* Footer */}
