@@ -41,8 +41,10 @@ export default function MermaidViewer({ code }: MermaidViewerProps) {
           `;
           svgElement.prepend(style);
         }
-      } catch (err: any) {
-        containerRef.current.innerHTML = `<pre class="text-red-500">Mermaid render error: ${err.message}</pre>`;
+      } catch (err) {
+        const errorMessage =
+          err instanceof Error ? err.message : 'Unknown rendering error';
+        containerRef.current.innerHTML = `<pre class="text-red-500">Mermaid render error: ${errorMessage}</pre>`;
       }
     };
 
