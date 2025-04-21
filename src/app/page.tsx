@@ -231,7 +231,7 @@ export default function Home() {
 
             {/* Used By Section */}
             <div className="w-1/2 max-w-md">
-              <h3 className="text-white text-sm uppercase tracking-widest font-medium opacity-70 mb-4 text-center">Used by</h3>
+              <h3 className="text-white text-sm uppercase tracking-widest font-medium opacity-70 mb-4 text-center">Collaboration With</h3>
               <div className="relative w-full h-20 overflow-hidden">
                 <motion.div
                   className="flex items-center justify-center gap-10 absolute w-full"
