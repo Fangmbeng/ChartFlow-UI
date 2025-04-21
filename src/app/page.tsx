@@ -12,14 +12,61 @@ const Spline = dynamic(() => import('./animations/ui/SplineClient'), {
   ssr: false,
 });
 
+// Enhanced reviews with names and star ratings
 const reviews = [
-  "GitFlow AI completely streamlined our architecture process. Love it!",
-  "This tool saves hours of documentation and planning. Brilliant UI!",
-  "As a startup CTO, this is the best assistant I’ve used so far.",
-  "AI-generated SDLC documents are shockingly accurate. 10/10",
-  "Made our system design presentation look world-class. Highly recommend!",
-  "Even our non-tech founder understood the output. That’s a win.",
-  "From user flow to risk analysis — all in one click. Magical."
+  { 
+    text: "GitFlow AI completely streamlined our architecture process. Love it!",
+    name: "Michael Chen",
+    stars: 5,
+    role: "Senior Architect, TechSphere"
+  },
+  { 
+    text: "This tool saves hours of documentation and planning. Brilliant UI!",
+    name: "Sarah Johnson",
+    stars: 5,
+    role: "Project Manager, InnovateCorp"
+  },
+  { 
+    text: "As a startup CTO, this is the best assistant I&apos;ve used so far.",
+    name: "Alex Rivera",
+    stars: 4,
+    role: "CTO, LaunchPad"
+  },
+  { 
+    text: "AI-generated SDLC documents are shockingly accurate. 10/10",
+    name: "Priya Patel",
+    stars: 5,
+    role: "DevOps Engineer, CloudNine"
+  },
+  { 
+    text: "Made our system design presentation look world-class. Highly recommend!",
+    name: "David Thompson",
+    stars: 5,
+    role: "Lead Developer, CodeCraft"
+  },
+  { 
+    text: "Even our non-tech founder understood the output. That&apos;s a win.",
+    name: "Emma Wilson",
+    stars: 4,
+    role: "Product Owner, StartupX"
+  },
+  { 
+    text: "From user flow to risk analysis — all in one click. Magical.",
+    name: "James Lee",
+    stars: 5,
+    role: "System Architect, DataFlow"
+  }
+];
+
+// Separate partner data
+const poweredByPartners = [
+  { name: 'groq_1', url: 'https://console.groq.com/docs/overview' },
+  { name: 'vercel', url: 'https://vercel.com' },
+];
+
+const usedByPartners = [
+  { name: 'Coding Temple Alumini', url: 'https://www.linkedin.com/showcase/coding-temple-alumni/about/' },
+  { name: 'myskinci', url: 'https://myskinci.com/home' },
 ];
 
 export default function Home() {
@@ -48,7 +95,7 @@ export default function Home() {
           </div>
 
           <p className="text-lg md:text-xl text-white/80 max-w-2xl mb-10">
-            Welcome to the World's 1st Software Architecture Designer Tool tailored for multiple Business Sectors
+            Welcome to the World&apos;s 1st Software Architecture Designer Tool tailored for multiple Business Sectors
           </p>
 
           <motion.button
@@ -112,8 +159,6 @@ export default function Home() {
               </motion.div>
             ))}
 
-
-
             {/* Floating Reviews on Right Side, spaced apart */}
             {reviews.map((review, i) => (
               <motion.div
@@ -122,41 +167,109 @@ export default function Home() {
                 animate={{ x: '40%', opacity: [0, 1, 0] }}
                 transition={{ duration: 14, delay: i * 1.5, repeat: Infinity }}
                 className="absolute right-0 bg-white/10 text-white text-sm md:text-base px-4 py-3 rounded-lg shadow backdrop-blur-lg max-w-sm"
-                style={{ top: `${i * 69}px` }}
+                style={{ top: `${i * 115}px` }}
               >
-                {review}
+                <div className="flex items-center gap-1 mb-1">
+                  {[...Array(5)].map((_, starIndex) => (
+                    <Star 
+                      key={starIndex} 
+                      size={14} 
+                      className={starIndex < review.stars ? 'fill-yellow-400 text-yellow-400' : 'text-gray-400'} 
+                    />
+                  ))}
+                </div>
+                <p className="mb-2">{review.text}</p>
+                <div className="flex flex-col items-start text-xs text-white/70">
+                  <span className="font-semibold text-white/90">{review.name}</span>
+                  <span>{review.role}</span>
+                </div>
               </motion.div>
             ))}
           </div>
         </main>
 
-        <div className="mt-32 py-12 px-6 bg-gradient-to-b from-black via-gray-900 to-black w-full flex flex-col items-center gap-8">
-          <h3 className="text-white text-sm uppercase tracking-widest font-medium opacity-70">Powered by</h3>
-          <div className="flex gap-12 items-center justify-center animate-slideSlow overflow-hidden">
-            {[
-              { name: 'Coding Temple Alumini', url: 'https://www.linkedin.com/showcase/coding-temple-alumni/about/' },
-              { name: 'myskinci', url: 'https://myskinci.com/home' },
-              { name: 'groq_1', url: 'https://console.groq.com/docs/overview' },
-              { name: 'vercel', url: 'https://vercel.com' },
-            ].map((partner, i) => (
-              <a
-                key={i}
-                href={partner.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="opacity-70 hover:opacity-100 transition-opacity"
-              >
-                <Image
-                  src={`/partners/${partner.name}.jpeg`}
-                  alt={`${partner.name} logo`}
-                  width={100}
-                  height={30}
-                />
-              </a>
-            ))}
+        <div className="mt-32 py-12 px-6 bg-gradient-to-b from-black via-gray-900 to-black w-full">
+          {/* Partners row with horizontal animations */}
+          <div className="w-full flex flex-row items-center justify-center gap-8 mb-12">
+            {/* Powered By Section */}
+            <div className="w-1/2 max-w-md">
+              <h3 className="text-white text-sm uppercase tracking-widest font-medium opacity-70 mb-4 text-center">Powered by</h3>
+              <div className="relative w-full h-20 overflow-hidden">
+                <motion.div
+                  className="flex items-center justify-center gap-10 absolute w-full"
+                  initial={{ x: "100%" }}
+                  animate={{
+                    x: ["100%", "0%", "0%", "-100%"],
+                  }}
+                  transition={{
+                    times: [0, 0.3, 0.7, 1],
+                    duration: 10, // Slower animation
+                    repeat: Infinity,
+                    repeatType: "loop",
+                  }}
+                >
+                  {poweredByPartners.map((partner, i) => (
+                    <a
+                      key={i}
+                      href={partner.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="opacity-70 hover:opacity-100 transition-opacity flex items-center justify-center"
+                    >
+                      <Image
+                        src={`/partners/${partner.name}.jpeg`}
+                        alt={`${partner.name} logo`}
+                        width={100}
+                        height={30}
+                        className="object-contain"
+                      />
+                    </a>
+                  ))}
+                </motion.div>
+              </div>
+            </div>
+
+            {/* Used By Section */}
+            <div className="w-1/2 max-w-md">
+              <h3 className="text-white text-sm uppercase tracking-widest font-medium opacity-70 mb-4 text-center">Used by</h3>
+              <div className="relative w-full h-20 overflow-hidden">
+                <motion.div
+                  className="flex items-center justify-center gap-10 absolute w-full"
+                  initial={{ x: "-100%" }}
+                  animate={{
+                    x: ["-100%", "0%", "0%", "100%"],
+                  }}
+                  transition={{
+                    times: [0, 0.3, 0.7, 1],
+                    duration: 10, // Slower animation
+                    repeat: Infinity,
+                    repeatType: "loop",
+                    delay: 5, // Offset the animation so they alternate
+                  }}
+                >
+                  {usedByPartners.map((partner, i) => (
+                    <a
+                      key={i}
+                      href={partner.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="opacity-70 hover:opacity-100 transition-opacity flex items-center justify-center"
+                    >
+                      <Image
+                        src={`/partners/${partner.name}.jpeg`}
+                        alt={`${partner.name} logo`}
+                        width={100}
+                        height={30}
+                        className="object-contain"
+                      />
+                    </a>
+                  ))}
+                </motion.div>
+              </div>
+            </div>
           </div>
 
-          <div className="flex items-center gap-2 text-yellow-400">
+          <div className="flex items-center justify-center gap-2 text-yellow-400 mt-8">
             {[1, 2, 3, 4, 5].map((i) => (
               <Star key={i} className={i <= 4 ? 'fill-current' : 'opacity-30'} />
             ))}
