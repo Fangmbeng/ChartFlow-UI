@@ -428,7 +428,7 @@ export default function GitFlowAI() {
       <div className="backdrop-blur-sm bg-white/70 dark:bg-gray-900/70 shadow-xl rounded-xl max-w-7xl mx-auto my-8 p-6">
         <header className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">GitFlow AI</h1>
+            <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">ChartFlow AI</h1>
             <p className="text-gray-600 dark:text-gray-300">Intelligent Software Architecture Generator</p>
           </div>
           

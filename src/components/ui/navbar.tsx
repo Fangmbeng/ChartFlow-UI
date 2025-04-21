@@ -24,7 +24,8 @@ export default function Navbar() {
             />
             <span 
             onClick={() => router.push('/chat')}
-            className="text-xl font-bold">GitFlow AI</span>
+            className="text-xl font-bold cursor-pointer">ChartFlow AI
+            </span>
         </div>
             <div className="space-x-4">
             {/* <button className="px-4 py-2 bg-white text-black rounded hover:bg-gray-200 transition">

@@ -6,6 +6,8 @@ import { loadSlim } from 'tsparticles-slim'; // Changed from loadFull to loadSli
 import { useCallback, useState, useEffect } from 'react';
 import { Star, Filter, ChevronUp, ChevronDown, Send } from 'lucide-react';
 import type { Engine } from 'tsparticles-engine';
+import { useRouter } from 'next/navigation';
+
 
 // Define the review interface for type safety
 interface Review {
@@ -20,7 +22,7 @@ interface Review {
 // Enhanced reviews with names and star ratings
 const reviews: Review[] = [
   { 
-    text: "GitFlow AI completely streamlined our architecture process. Love it!",
+    text: "ChartFlow AI completely streamlined our architecture process. Love it!",
     name: "Michael Chen",
     stars: 5,
     role: "Senior Architect, TechSphere",
@@ -36,7 +38,7 @@ const reviews: Review[] = [
     date: "2025-03-02"
   },
   { 
-    text: "As a startup CTO, this is the best assistant I&apos;ve used so far.",
+    text: "As a startup CTO, this is the best assistant I have used so far.",
     name: "Alex Rivera",
     stars: 5,
     role: "CTO, LaunchPad",
@@ -60,7 +62,7 @@ const reviews: Review[] = [
     date: "2025-02-20"
   },
   { 
-    text: "Even our non-tech founder understood the output. That&apos;s a win.",
+    text: "Even our non-tech founder understood the output. That's a win.",
     name: "Emma Wilson",
     stars: 4,
     role: "Product Owner, StartupX",
@@ -90,6 +92,8 @@ export default function FeedbackPage() {
   const [selectedRating, setSelectedRating] = useState(0);
   const [sortBy, setSortBy] = useState("newest"); // newest, highest, lowest
   const [isScrolled, setIsScrolled] = useState(false);
+  const router = useRouter();
+  
   
   // Form state
   const [reviewText, setReviewText] = useState("");
@@ -397,7 +401,7 @@ export default function FeedbackPage() {
                   <textarea
                     value={reviewText}
                     onChange={(e) => setReviewText(e.target.value)}
-                    placeholder="What did you think about GitFlow AI?"
+                    placeholder="What did you think about ChartFlow AI?"
                     className="w-full bg-gray-800/70 border border-gray-700 rounded-lg p-3 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                     rows={4}
                     required
@@ -553,16 +557,17 @@ export default function FeedbackPage() {
             viewport={{ once: true }}
             className="mt-28 text-center"
           >
-            <h2 className="text-2xl font-bold mb-4">Ready to experience GitFlow AI?</h2>
+            <h2 className="text-2xl font-bold mb-4">Ready to experience ChartFlow AI?</h2>
             <p className="text-gray-400 max-w-xl mx-auto mb-8">
               Join thousands of satisfied users who have streamlined their software architecture process.
             </p>
-            <a 
-              href="/" 
-              className="inline-block bg-gradient-to-r from-green-400 via-teal-400 to-blue-500 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:scale-105 transition-transform duration-300"
+            <span 
+              onClick={() => router.push('/')}
+              className="inline-block cursor-pointer bg-gradient-to-r from-green-400 via-teal-400 to-blue-500 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:scale-105 transition-transform duration-300"
             >
               Get Started for Free
-            </a>
+            </span>
+
           </motion.div>
         </main>
       </div>

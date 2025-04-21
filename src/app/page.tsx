@@ -15,7 +15,7 @@ const Spline = dynamic(() => import('./animations/ui/SplineClient'), {
 // Enhanced reviews with names and star ratings
 const reviews = [
   { 
-    text: "GitFlow AI completely streamlined our architecture process. Love it!",
+    text: "ChartFlow AI completely streamlined our architecture process. Love it!",
     name: "Michael Chen",
     stars: 5,
     role: "Senior Architect, TechSphere"
@@ -27,7 +27,7 @@ const reviews = [
     role: "Project Manager, InnovateCorp"
   },
   { 
-    text: "As a startup CTO, this is the best assistant I&apos;ve used so far.",
+    text: "As a startup CTO, this is the best assistant I have used so far.",
     name: "Alex Rivera",
     stars: 4,
     role: "CTO, LaunchPad"
@@ -45,7 +45,7 @@ const reviews = [
     role: "Lead Developer, CodeCraft"
   },
   { 
-    text: "Even our non-tech founder understood the output. That&apos;s a win.",
+    text: "Even our non-tech founder understood the output. That is a win.",
     name: "Emma Wilson",
     stars: 4,
     role: "Product Owner, StartupX"
@@ -91,7 +91,7 @@ export default function Home() {
               height={48}
               className="object-contain"
             />
-            <h1 className="text-5xl md:text-6xl font-bold">GitFlow AI</h1>
+            <h1 className="text-5xl md:text-6xl font-bold">ChartFlow AI</h1>
           </div>
 
           <p className="text-lg md:text-xl text-white/80 max-w-2xl mb-10">
@@ -120,8 +120,8 @@ export default function Home() {
               >
                 <h3 className="text-2xl font-semibold mb-2">{title}</h3>
                 <p className="text-white/70 text-sm">
-                  {i === 0 && 'GitFlow AI helps you design Software Architecture, to provide robust & secure applications for multiple business sectors.'}
-                  {i === 1 && 'Write or upload your business logic. GitFlow AI is tailored for any technical level, implementing DevSecOps throughout the design.'}
+                  {i === 0 && 'ChartFlow AI helps you design Software Architecture, to provide robust & secure applications for multiple business sectors.'}
+                  {i === 1 && 'Write or upload your business logic. ChartFlow AI is tailored for any technical level, implementing DevSecOps throughout the design.'}
                   {i === 2 && 'Get your downloadable design, detailed SDLC documentation, Future Consideration & Potential Risk Analysis.'}
                 </p>
               </motion.div>
