@@ -4,7 +4,6 @@ import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
 import Particles from 'react-tsparticles';
 import { loadSlim } from 'tsparticles-slim'; // Changed from loadFull to loadSlim
 import { useCallback, useState, useEffect } from 'react';
-import Image from 'next/image';
 import { Star, Filter, ChevronUp, ChevronDown, Send } from 'lucide-react';
 import type { Engine } from 'tsparticles-engine';
 
