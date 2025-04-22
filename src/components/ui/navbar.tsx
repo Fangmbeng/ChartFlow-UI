@@ -16,7 +16,7 @@ export default function Navbar() {
         <header className="flex justify-between items-center px-6 py-4 border-b border-white/10 bg-black/60 backdrop-blur">
         <div className="flex items-center gap-2">
             <Image
-            src="/partners/OIP (3).jpeg"
+            src="/partners/OIP__5_-removebg-preview.png"
             alt="GitFlow AI Logo"
             width={32}
             height={32}

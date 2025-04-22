@@ -85,7 +85,7 @@ export default function Home() {
         <main className="flex flex-col items-center justify-center text-center px-6 py-20">
           <div className="flex items-center justify-center gap-4 mb-6">
             <Image
-              src="/partners/OIP (3).jpeg"
+              src="/partners/OIP__5_-removebg-preview.png"
               alt="GitFlow AI Logo"
               width={48}
               height={48}
