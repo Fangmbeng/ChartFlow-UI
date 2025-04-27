@@ -454,174 +454,174 @@ export const reviews: Review[] =[
       industry: "Team Collaboration",
       date: "2025-03-06"
     },
-    {
-      text: "The database schema visualization feature saved days of manual documentation.",
-      name: "Milo Foster",
-      stars: 5,
-      role: "Database Administrator, DataStore",
-      industry: "Database Management",
-      date: "2025-03-11"
-    },
-    {
-      text: "Integration with our version control system could be smoother, but works well overall.",
-      name: "June Rogers",
-      stars: 4,
-      role: "Version Control Specialist, GitMaster",
-      industry: "Version Control",
-      date: "2025-02-26"
-    },
-    {
-      text: "We use ChartFlow AI for both architecture and process documentation. Versatile tool.",
-      name: "Hugo Gray",
-      stars: 5,
-      role: "Process Engineer, FlowOptimize",
-      industry: "Process Engineering",
-      date: "2025-03-14"
-    },
-    {
-      text: "The AI-suggested optimizations increased our system throughput by 30%.",
-      name: "Stella Price",
-      stars: 5,
-      role: "Performance Analyst, SpeedTech",
-      industry: "Performance Optimization",
-      date: "2025-03-08"
-    },
-    {
-      text: "Excellent for creating clear architecture boundaries in domain-driven design.",
-      name: "Felix Hughes",
-      stars: 5,
-      role: "DDD Specialist, DomainDriven",
-      industry: "Domain-Driven Design",
-      date: "2025-03-03"
-    },
-    {
-      text: "The customization options let us match our company's visual identity perfectly.",
-      name: "Olive Sanders",
-      stars: 5,
-      role: "Brand Manager, IdentityFirst",
-      industry: "Branding",
-      date: "2025-03-16"
-    },
-    {
-      text: "Occasionally crashes with very large diagrams, but support is responsive.",
-      name: "Silas James",
-      stars: 4,
-      role: "Enterprise Architect, ScaleTech",
-      industry: "Enterprise Architecture",
-      date: "2025-02-24"
-    },
-    {
-      text: "The AI suggestions for refactoring our monolith were surprisingly actionable.",
-      name: "Clara Bennett",
-      stars: 5,
-      role: "Refactoring Specialist, LegacyNew",
-      industry: "Software Modernization",
-      date: "2025-03-10"
-    },
-    {
-      text: "Perfect for creating architecture decision records with visual context.",
-      name: "Atticus Wood",
-      stars: 5,
-      role: "Architecture Governance, DecisionDoc",
-      industry: "Architecture Governance",
-      date: "2025-03-05"
-    },
-    {
-      text: "The export to our wiki format needed some tweaking, but now works perfectly.",
-      name: "Willow Ryan",
-      stars: 4,
-      role: "Documentation Lead, WikiMaster",
-      industry: "Technical Documentation",
-      date: "2025-02-27"
-    },
-    {
-      text: "Changed how we onboard new developers. Architecture is finally understandable.",
-      name: "Rowan Powell",
-      stars: 5,
-      role: "Developer Experience Lead, DevJoy",
-      industry: "Developer Experience",
-      date: "2025-03-13"
-    },
-    {
-      text: "Perfect for creating consistent architecture across multiple product teams.",
-      name: "Maeve Perry",
-      stars: 5,
-      role: "Architecture Governance, StandardsFirst",
-      industry: "Architecture Standards",
-      date: "2025-03-09"
-    },
-    {
-      text: "The AI-generated security recommendations caught issues our manual reviews missed.",
-      name: "Cyrus Long",
-      stars: 5,
-      role: "Security Auditor, SecureAudit",
-      industry: "Security Auditing",
-      date: "2025-03-04"
-    },
-    {
-      text: "Would like more industry-specific templates, but easy to create our own.",
-      name: "Sage Watson",
-      stars: 4,
-      role: "Industry Specialist, VerticalSolutions",
-      industry: "Vertical Solutions",
-      date: "2025-02-25"
-    },
-    {
-      text: "Excellent for documenting complex workflows and system interactions.",
-      name: "Phoenix Brooks",
-      stars: 5,
-      role: "Workflow Analyst, ProcessFlow",
-      industry: "Business Process Management",
-      date: "2025-03-11"
-    },
-    {
-      text: "Integration with our CI/CD pipeline documentation is seamless.",
-      name: "Quinn Kelly",
-      stars: 5,
-      role: "CI/CD Engineer, PipelinePro",
-      industry: "Continuous Integration",
-      date: "2025-03-07"
-    },  
-    {
-      text: "Outstanding for creating architecture blueprints. The templates are excellent starting points.",
-      name: "Leila Harrison",
-      stars: 5,
-      role: "Enterprise Architect, BlueprintDesign",
-      industry: "Enterprise Architecture",
-      date: "2025-03-02"
-    },
-    {
-      text: "The AI feedback on our architecture identified resilience issues before they became problems.",
-      name: "Rhys Gibson",
-      stars: 5,
-      role: "Resilience Engineer, AlwaysUp",
-      industry: "System Resilience",
-      date: "2025-03-14"
-    },
-    {
-      text: "Excellent for creating diagrams that non-technical stakeholders can understand.",
-      name: "Thea Marshall",
-      stars: 5,
-      role: "Business Liaison, TechTranslate",
-      industry: "Business-IT Alignment",
-      date: "2025-03-06"
-    },
-    {
-      text: "API documentation feature saved us countless hours of manual work.",
-      name: "Ezra Fleming",
-      stars: 5,
-      role: "API Documentation Lead, DocuAPI",
-      industry: "API Documentation",
-      date: "2025-03-12"
-    },
-    {
-      text: "The learning resources could be more comprehensive, but the product is intuitive.",
-      name: "Ember Crawford",
-      stars: 4,
-      role: "Learning Specialist, QuickLearn",
-      industry: "Training",
-      date: "2025-02-23"
-    },
+    // {
+    //   text: "The database schema visualization feature saved days of manual documentation.",
+    //   name: "Milo Foster",
+    //   stars: 5,
+    //   role: "Database Administrator, DataStore",
+    //   industry: "Database Management",
+    //   date: "2025-03-11"
+    // },
+    // {
+    //   text: "Integration with our version control system could be smoother, but works well overall.",
+    //   name: "June Rogers",
+    //   stars: 4,
+    //   role: "Version Control Specialist, GitMaster",
+    //   industry: "Version Control",
+    //   date: "2025-02-26"
+    // },
+    // {
+    //   text: "We use ChartFlow AI for both architecture and process documentation. Versatile tool.",
+    //   name: "Hugo Gray",
+    //   stars: 5,
+    //   role: "Process Engineer, FlowOptimize",
+    //   industry: "Process Engineering",
+    //   date: "2025-03-14"
+    // },
+    // {
+    //   text: "The AI-suggested optimizations increased our system throughput by 30%.",
+    //   name: "Stella Price",
+    //   stars: 5,
+    //   role: "Performance Analyst, SpeedTech",
+    //   industry: "Performance Optimization",
+    //   date: "2025-03-08"
+    // },
+    // {
+    //   text: "Excellent for creating clear architecture boundaries in domain-driven design.",
+    //   name: "Felix Hughes",
+    //   stars: 5,
+    //   role: "DDD Specialist, DomainDriven",
+    //   industry: "Domain-Driven Design",
+    //   date: "2025-03-03"
+    // },
+    // {
+    //   text: "The customization options let us match our company's visual identity perfectly.",
+    //   name: "Olive Sanders",
+    //   stars: 5,
+    //   role: "Brand Manager, IdentityFirst",
+    //   industry: "Branding",
+    //   date: "2025-03-16"
+    // },
+    // {
+    //   text: "Occasionally crashes with very large diagrams, but support is responsive.",
+    //   name: "Silas James",
+    //   stars: 4,
+    //   role: "Enterprise Architect, ScaleTech",
+    //   industry: "Enterprise Architecture",
+    //   date: "2025-02-24"
+    // },
+    // {
+    //   text: "The AI suggestions for refactoring our monolith were surprisingly actionable.",
+    //   name: "Clara Bennett",
+    //   stars: 5,
+    //   role: "Refactoring Specialist, LegacyNew",
+    //   industry: "Software Modernization",
+    //   date: "2025-03-10"
+    // },
+    // {
+    //   text: "Perfect for creating architecture decision records with visual context.",
+    //   name: "Atticus Wood",
+    //   stars: 5,
+    //   role: "Architecture Governance, DecisionDoc",
+    //   industry: "Architecture Governance",
+    //   date: "2025-03-05"
+    // },
+    // {
+    //   text: "The export to our wiki format needed some tweaking, but now works perfectly.",
+    //   name: "Willow Ryan",
+    //   stars: 4,
+    //   role: "Documentation Lead, WikiMaster",
+    //   industry: "Technical Documentation",
+    //   date: "2025-02-27"
+    // },
+    // {
+    //   text: "Changed how we onboard new developers. Architecture is finally understandable.",
+    //   name: "Rowan Powell",
+    //   stars: 5,
+    //   role: "Developer Experience Lead, DevJoy",
+    //   industry: "Developer Experience",
+    //   date: "2025-03-13"
+    // },
+    // {
+    //   text: "Perfect for creating consistent architecture across multiple product teams.",
+    //   name: "Maeve Perry",
+    //   stars: 5,
+    //   role: "Architecture Governance, StandardsFirst",
+    //   industry: "Architecture Standards",
+    //   date: "2025-03-09"
+    // },
+    // {
+    //   text: "The AI-generated security recommendations caught issues our manual reviews missed.",
+    //   name: "Cyrus Long",
+    //   stars: 5,
+    //   role: "Security Auditor, SecureAudit",
+    //   industry: "Security Auditing",
+    //   date: "2025-03-04"
+    // },
+    // {
+    //   text: "Would like more industry-specific templates, but easy to create our own.",
+    //   name: "Sage Watson",
+    //   stars: 4,
+    //   role: "Industry Specialist, VerticalSolutions",
+    //   industry: "Vertical Solutions",
+    //   date: "2025-02-25"
+    // },
+    // {
+    //   text: "Excellent for documenting complex workflows and system interactions.",
+    //   name: "Phoenix Brooks",
+    //   stars: 5,
+    //   role: "Workflow Analyst, ProcessFlow",
+    //   industry: "Business Process Management",
+    //   date: "2025-03-11"
+    // },
+    // {
+    //   text: "Integration with our CI/CD pipeline documentation is seamless.",
+    //   name: "Quinn Kelly",
+    //   stars: 5,
+    //   role: "CI/CD Engineer, PipelinePro",
+    //   industry: "Continuous Integration",
+    //   date: "2025-03-07"
+    // },  
+    // {
+    //   text: "Outstanding for creating architecture blueprints. The templates are excellent starting points.",
+    //   name: "Leila Harrison",
+    //   stars: 5,
+    //   role: "Enterprise Architect, BlueprintDesign",
+    //   industry: "Enterprise Architecture",
+    //   date: "2025-03-02"
+    // },
+    // {
+    //   text: "The AI feedback on our architecture identified resilience issues before they became problems.",
+    //   name: "Rhys Gibson",
+    //   stars: 5,
+    //   role: "Resilience Engineer, AlwaysUp",
+    //   industry: "System Resilience",
+    //   date: "2025-03-14"
+    // },
+    // {
+    //   text: "Excellent for creating diagrams that non-technical stakeholders can understand.",
+    //   name: "Thea Marshall",
+    //   stars: 5,
+    //   role: "Business Liaison, TechTranslate",
+    //   industry: "Business-IT Alignment",
+    //   date: "2025-03-06"
+    // },
+    // {
+    //   text: "API documentation feature saved us countless hours of manual work.",
+    //   name: "Ezra Fleming",
+    //   stars: 5,
+    //   role: "API Documentation Lead, DocuAPI",
+    //   industry: "API Documentation",
+    //   date: "2025-03-12"
+    // },
+    // {
+    //   text: "The learning resources could be more comprehensive, but the product is intuitive.",
+    //   name: "Ember Crawford",
+    //   stars: 4,
+    //   role: "Learning Specialist, QuickLearn",
+    //   industry: "Training",
+    //   date: "2025-02-23"
+    // },
     // {
     //   text: "Perfect for creating cloud infrastructure diagrams with AWS, Azure, and GCP elements.",
     //   name: "Orion Douglas",
