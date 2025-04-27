@@ -182,278 +182,278 @@ export const reviews: Review[] =[
       industry: "Cybersecurity",
       date: "2025-03-18"
     },
-    {
-      text: "Used it to document legacy systems before modernization. Saved weeks of reverse engineering.",
-      name: "Mason Anderson",
-      stars: 5,
-      role: "Legacy Systems Specialist, ModernizeIT",
-      industry: "IT Modernization",
-      date: "2025-03-02"
-    },
-    {
-      text: "Customer service response times could improve, but the product itself is stellar.",
-      name: "Amelia Thomas",
-      stars: 4,
-      role: "Project Coordinator, FastTrack",
-      industry: "Project Management",
-      date: "2025-02-28"
-    },
-    {
-      text: "The export to our wiki format wasn't perfect, but the team was quick to add the feature we needed.",
-      name: "Logan White",
-      stars: 4,
-      role: "Knowledge Manager, InfoSystems",
-      industry: "Knowledge Management",
-      date: "2025-03-10"
-    },
-    {
-      text: "Perfect for agile teams. Our sprint planning is 30% faster with architecture visualizations.",
-      name: "Evelyn Harris",
-      stars: 5,
-      role: "Scrum Master, AgileForce",
-      industry: "Agile Consulting",
-      date: "2025-03-15"
-    },
-    {
-      text: "Onboarded three new architects in record time thanks to the intuitive interface.",
-      name: "Jackson Clark",
-      stars: 5,
-      role: "HR Director, TalentTech",
-      industry: "Human Resources",
-      date: "2025-03-04"
-    },
-    {
-      text: "We used ChartFlow AI to document our entire cloud migration strategy. Exceptional results.",
-      name: "Sofia Lewis",
-      stars: 5,
-      role: "Cloud Migration Specialist, CloudShift",
-      industry: "Cloud Services",
-      date: "2025-03-12"
-    },
-    {
-      text: "The AI recommendations for optimizing our data flow were surprisingly insightful.",
-      name: "Leo Walker",
-      stars: 5,
-      role: "Data Engineer, BigData Solutions",
-      industry: "Data Engineering",
-      date: "2025-03-01"
-    },
-    {
-      text: "Minor latency issues during peak times, but the functionality more than makes up for it.",
-      name: "Aria Young",
-      stars: 4,
-      role: "Network Administrator, FastConnect",
-      industry: "Telecommunications",
-      date: "2025-02-26"
-    },
-    {
-      text: "Transformed how we document APIs. The auto-generation from OpenAPI specs is flawless.",
-      name: "Liam Hall",
-      stars: 5,
-      role: "API Lead, InterfaceAPI",
-      industry: "API Development",
-      date: "2025-03-17"
-    },
-    {
-      text: "After trying numerous architecture tools, ChartFlow AI stands head and shoulders above the rest.",
-      name: "Luna Allen",
-      stars: 5,
-      role: "Technology Evaluator, TechSelect",
-      industry: "Technology Evaluation",
-      date: "2025-03-09"
-    },
-    {
-      text: "Our remote and in-office teams are finally on the same page thanks to ChartFlow AI.",
-      name: "Gabriel Scott",
-      stars: 5,
-      role: "Hybrid Workforce Manager, FlexWork",
-      industry: "Remote Work",
-      date: "2025-03-11"
-    },
-    {
-      text: "Changed how we approach system design. The real-time collaboration feature is outstanding.",
-      name: "Aurora King",
-      stars: 5,
-      role: "Systems Designer, DesignFirst",
-      industry: "Systems Design",
-      date: "2025-03-06"
-    },
-    {
-      text: "The pricing model could be more flexible for small teams, but the value is undeniable.",
-      name: "Elijah Green",
-      stars: 4,
-      role: "Startup Founder, SmallBatch",
-      industry: "Startups",
-      date: "2025-02-24"
-    },
-    {
-      text: "Excellent tool for visualizing complex microservice interdependencies.",
-      name: "Scarlett Baker",
-      stars: 5,
-      role: "Microservices Specialist, ServiceMesh",
-      industry: "Microservices",
-      date: "2025-03-13"
-    },
-    {
-      text: "Our academic research team uses ChartFlow AI to document experimental architectures. Perfect fit.",
-      name: "Felix Adams",
-      stars: 5,
-      role: "Research Lead, TechUniversity",
-      industry: "Academic Research",
-      date: "2025-03-03"
-    },
-    {
-      text: "Automated consistency checking across multiple diagrams saved us from critical design flaws.",
-      name: "Nova Carter",
-      stars: 5,
-      role: "QA Manager, QualityTech",
-      industry: "Quality Assurance",
-      date: "2025-03-08"
-    },
-    {
-      text: "Initial setup required some support, but now it's an essential part of our workflow.",
-      name: "Jasper Mitchell",
-      stars: 4,
-      role: "IT Manager, MidMarket Solutions",
-      industry: "IT Management",
-      date: "2025-02-27"
-    },
-    {
-      text: "The AI analysis of our architecture identified performance bottlenecks we never suspected.",
-      name: "Chloe Phillips",
-      stars: 5,
-      role: "Performance Engineer, OptimizeTech",
-      industry: "Performance Engineering",
-      date: "2025-03-14"
-    },
-    {
-      text: "Perfect for documenting containerized applications and Kubernetes clusters.",
-      name: "Owen Reed",
-      stars: 5,
-      role: "Kubernetes Administrator, ContainerOps",
-      industry: "Container Orchestration",
-      date: "2025-03-05"
-    },
-    {
-      text: "Integration with our ticketing system changed our planning process for the better.",
-      name: "Ruby Cooper",
-      stars: 5,
-      role: "Planning Manager, StrategyFirst",
-      industry: "Strategic Planning",
-      date: "2025-03-11"
-    },
-    {
-      text: "As a consultant, this tool helps me deliver value to clients from day one.",
-      name: "Miles Ross",
-      stars: 5,
-      role: "IT Consultant, FastConsult",
-      industry: "IT Consulting",
-      date: "2025-03-16"
-    },
-    {
-      text: "Excellent for creating GDPR compliance documentation and data flow diagrams.",
-      name: "Lily Morgan",
-      stars: 5,
-      role: "Data Protection Officer, PrivacyGuard",
-      industry: "Data Privacy",
-      date: "2025-03-10"
-    },
-    {
-      text: "The mobile experience could use improvement, but desktop functionality is excellent.",
-      name: "August Bell",
-      stars: 4,
-      role: "Mobile Developer, AppFirst",
-      industry: "Mobile Development",
-      date: "2025-02-25"
-    },
-    {
-      text: "Saved our government project from documentation hell. Intuitive and comprehensive.",
-      name: "Violet Cook",
-      stars: 5,
-      role: "Government Contractor, GovTech",
-      industry: "Government",
-      date: "2025-03-02"
-    },
-    {
-      text: "We use it for documenting IoT architectures. The device visualization options are perfect.",
-      name: "Theo Murphy",
-      stars: 5,
-      role: "IoT Architect, ConnectedThings",
-      industry: "Internet of Things",
-      date: "2025-03-07"
-    },
-    {
-      text: "The AI suggested architecture improvements that increased our system resilience.",
-      name: "Hazel Rivera",
-      stars: 5,
-      role: "Resilience Engineer, NeverDown",
-      industry: "System Resilience",
-      date: "2025-03-13"
-    },
-    {
-      text: "Training materials could be more comprehensive, but the support team fills the gaps.",
-      name: "Atlas Bailey",
-      stars: 4,
-      role: "Training Coordinator, LearnFast",
-      industry: "Corporate Training",
-      date: "2025-02-28"
-    },
-    {
-      text: "Changed how we approach security architecture reviews. The threat modeling integration is brilliant.",
-      name: "Ivy Ward",
-      stars: 5,
-      role: "Security Architect, SecureDesign",
-      industry: "Cybersecurity",
-      date: "2025-03-15"
-    },
-    {
-      text: "Perfect for creating investor-ready architecture presentations. Helped secure our Series B.",
-      name: "Finn Peterson",
-      stars: 5,
-      role: "CTO, FundReady",
-      industry: "Startup Funding",
-      date: "2025-03-04"
-    },
-    {
-      text: "Automated SDLC documentation has significantly improved our audit readiness.",
-      name: "Zoe Howard",
-      stars: 5,
-      role: "Compliance Director, AuditReady",
-      industry: "Compliance",
-      date: "2025-03-09"
-    },
-    {
-      text: "We switched from a leading competitor and haven't looked back. Superior in every way.",
-      name: "Roman Evans",
-      stars: 5,
-      role: "IT Director, SwitchTech",
-      industry: "IT Management",
-      date: "2025-03-12"
-    },
-    {
-      text: "Minor learning curve with some advanced features, but the results are worth it.",
-      name: "Iris Collins",
-      stars: 4,
-      role: "Junior Architect, LearnArch",
-      industry: "Architecture Training",
-      date: "2025-02-23"
-    },
-    {
-      text: "Perfect for documenting serverless architectures and event-driven systems.",
-      name: "Oscar Edwards",
-      stars: 5,
-      role: "Serverless Specialist, EventDriven",
-      industry: "Serverless Computing",
-      date: "2025-03-17"
-    },
-    {
-      text: "Real-time collaboration features are transformative for our distributed team.",
-      name: "Daisy Simmons",
-      stars: 5,
-      role: "Collaboration Lead, TeamSync",
-      industry: "Team Collaboration",
-      date: "2025-03-06"
-    },
+    // {
+    //   text: "Used it to document legacy systems before modernization. Saved weeks of reverse engineering.",
+    //   name: "Mason Anderson",
+    //   stars: 5,
+    //   role: "Legacy Systems Specialist, ModernizeIT",
+    //   industry: "IT Modernization",
+    //   date: "2025-03-02"
+    // },
+    // {
+    //   text: "Customer service response times could improve, but the product itself is stellar.",
+    //   name: "Amelia Thomas",
+    //   stars: 4,
+    //   role: "Project Coordinator, FastTrack",
+    //   industry: "Project Management",
+    //   date: "2025-02-28"
+    // },
+    // {
+    //   text: "The export to our wiki format wasn't perfect, but the team was quick to add the feature we needed.",
+    //   name: "Logan White",
+    //   stars: 4,
+    //   role: "Knowledge Manager, InfoSystems",
+    //   industry: "Knowledge Management",
+    //   date: "2025-03-10"
+    // },
+    // {
+    //   text: "Perfect for agile teams. Our sprint planning is 30% faster with architecture visualizations.",
+    //   name: "Evelyn Harris",
+    //   stars: 5,
+    //   role: "Scrum Master, AgileForce",
+    //   industry: "Agile Consulting",
+    //   date: "2025-03-15"
+    // },
+    // {
+    //   text: "Onboarded three new architects in record time thanks to the intuitive interface.",
+    //   name: "Jackson Clark",
+    //   stars: 5,
+    //   role: "HR Director, TalentTech",
+    //   industry: "Human Resources",
+    //   date: "2025-03-04"
+    // },
+    // {
+    //   text: "We used ChartFlow AI to document our entire cloud migration strategy. Exceptional results.",
+    //   name: "Sofia Lewis",
+    //   stars: 5,
+    //   role: "Cloud Migration Specialist, CloudShift",
+    //   industry: "Cloud Services",
+    //   date: "2025-03-12"
+    // },
+    // {
+    //   text: "The AI recommendations for optimizing our data flow were surprisingly insightful.",
+    //   name: "Leo Walker",
+    //   stars: 5,
+    //   role: "Data Engineer, BigData Solutions",
+    //   industry: "Data Engineering",
+    //   date: "2025-03-01"
+    // },
+    // {
+    //   text: "Minor latency issues during peak times, but the functionality more than makes up for it.",
+    //   name: "Aria Young",
+    //   stars: 4,
+    //   role: "Network Administrator, FastConnect",
+    //   industry: "Telecommunications",
+    //   date: "2025-02-26"
+    // },
+    // {
+    //   text: "Transformed how we document APIs. The auto-generation from OpenAPI specs is flawless.",
+    //   name: "Liam Hall",
+    //   stars: 5,
+    //   role: "API Lead, InterfaceAPI",
+    //   industry: "API Development",
+    //   date: "2025-03-17"
+    // },
+    // {
+    //   text: "After trying numerous architecture tools, ChartFlow AI stands head and shoulders above the rest.",
+    //   name: "Luna Allen",
+    //   stars: 5,
+    //   role: "Technology Evaluator, TechSelect",
+    //   industry: "Technology Evaluation",
+    //   date: "2025-03-09"
+    // },
+    // {
+    //   text: "Our remote and in-office teams are finally on the same page thanks to ChartFlow AI.",
+    //   name: "Gabriel Scott",
+    //   stars: 5,
+    //   role: "Hybrid Workforce Manager, FlexWork",
+    //   industry: "Remote Work",
+    //   date: "2025-03-11"
+    // },
+    // {
+    //   text: "Changed how we approach system design. The real-time collaboration feature is outstanding.",
+    //   name: "Aurora King",
+    //   stars: 5,
+    //   role: "Systems Designer, DesignFirst",
+    //   industry: "Systems Design",
+    //   date: "2025-03-06"
+    // },
+    // {
+    //   text: "The pricing model could be more flexible for small teams, but the value is undeniable.",
+    //   name: "Elijah Green",
+    //   stars: 4,
+    //   role: "Startup Founder, SmallBatch",
+    //   industry: "Startups",
+    //   date: "2025-02-24"
+    // },
+    // {
+    //   text: "Excellent tool for visualizing complex microservice interdependencies.",
+    //   name: "Scarlett Baker",
+    //   stars: 5,
+    //   role: "Microservices Specialist, ServiceMesh",
+    //   industry: "Microservices",
+    //   date: "2025-03-13"
+    // },
+    // {
+    //   text: "Our academic research team uses ChartFlow AI to document experimental architectures. Perfect fit.",
+    //   name: "Felix Adams",
+    //   stars: 5,
+    //   role: "Research Lead, TechUniversity",
+    //   industry: "Academic Research",
+    //   date: "2025-03-03"
+    // },
+    // {
+    //   text: "Automated consistency checking across multiple diagrams saved us from critical design flaws.",
+    //   name: "Nova Carter",
+    //   stars: 5,
+    //   role: "QA Manager, QualityTech",
+    //   industry: "Quality Assurance",
+    //   date: "2025-03-08"
+    // },
+    // {
+    //   text: "Initial setup required some support, but now it's an essential part of our workflow.",
+    //   name: "Jasper Mitchell",
+    //   stars: 4,
+    //   role: "IT Manager, MidMarket Solutions",
+    //   industry: "IT Management",
+    //   date: "2025-02-27"
+    // },
+    // {
+    //   text: "The AI analysis of our architecture identified performance bottlenecks we never suspected.",
+    //   name: "Chloe Phillips",
+    //   stars: 5,
+    //   role: "Performance Engineer, OptimizeTech",
+    //   industry: "Performance Engineering",
+    //   date: "2025-03-14"
+    // },
+    // {
+    //   text: "Perfect for documenting containerized applications and Kubernetes clusters.",
+    //   name: "Owen Reed",
+    //   stars: 5,
+    //   role: "Kubernetes Administrator, ContainerOps",
+    //   industry: "Container Orchestration",
+    //   date: "2025-03-05"
+    // },
+    // {
+    //   text: "Integration with our ticketing system changed our planning process for the better.",
+    //   name: "Ruby Cooper",
+    //   stars: 5,
+    //   role: "Planning Manager, StrategyFirst",
+    //   industry: "Strategic Planning",
+    //   date: "2025-03-11"
+    // },
+    // {
+    //   text: "As a consultant, this tool helps me deliver value to clients from day one.",
+    //   name: "Miles Ross",
+    //   stars: 5,
+    //   role: "IT Consultant, FastConsult",
+    //   industry: "IT Consulting",
+    //   date: "2025-03-16"
+    // },
+    // {
+    //   text: "Excellent for creating GDPR compliance documentation and data flow diagrams.",
+    //   name: "Lily Morgan",
+    //   stars: 5,
+    //   role: "Data Protection Officer, PrivacyGuard",
+    //   industry: "Data Privacy",
+    //   date: "2025-03-10"
+    // },
+    // {
+    //   text: "The mobile experience could use improvement, but desktop functionality is excellent.",
+    //   name: "August Bell",
+    //   stars: 4,
+    //   role: "Mobile Developer, AppFirst",
+    //   industry: "Mobile Development",
+    //   date: "2025-02-25"
+    // },
+    // {
+    //   text: "Saved our government project from documentation hell. Intuitive and comprehensive.",
+    //   name: "Violet Cook",
+    //   stars: 5,
+    //   role: "Government Contractor, GovTech",
+    //   industry: "Government",
+    //   date: "2025-03-02"
+    // },
+    // {
+    //   text: "We use it for documenting IoT architectures. The device visualization options are perfect.",
+    //   name: "Theo Murphy",
+    //   stars: 5,
+    //   role: "IoT Architect, ConnectedThings",
+    //   industry: "Internet of Things",
+    //   date: "2025-03-07"
+    // },
+    // {
+    //   text: "The AI suggested architecture improvements that increased our system resilience.",
+    //   name: "Hazel Rivera",
+    //   stars: 5,
+    //   role: "Resilience Engineer, NeverDown",
+    //   industry: "System Resilience",
+    //   date: "2025-03-13"
+    // },
+    // {
+    //   text: "Training materials could be more comprehensive, but the support team fills the gaps.",
+    //   name: "Atlas Bailey",
+    //   stars: 4,
+    //   role: "Training Coordinator, LearnFast",
+    //   industry: "Corporate Training",
+    //   date: "2025-02-28"
+    // },
+    // {
+    //   text: "Changed how we approach security architecture reviews. The threat modeling integration is brilliant.",
+    //   name: "Ivy Ward",
+    //   stars: 5,
+    //   role: "Security Architect, SecureDesign",
+    //   industry: "Cybersecurity",
+    //   date: "2025-03-15"
+    // },
+    // {
+    //   text: "Perfect for creating investor-ready architecture presentations. Helped secure our Series B.",
+    //   name: "Finn Peterson",
+    //   stars: 5,
+    //   role: "CTO, FundReady",
+    //   industry: "Startup Funding",
+    //   date: "2025-03-04"
+    // },
+    // {
+    //   text: "Automated SDLC documentation has significantly improved our audit readiness.",
+    //   name: "Zoe Howard",
+    //   stars: 5,
+    //   role: "Compliance Director, AuditReady",
+    //   industry: "Compliance",
+    //   date: "2025-03-09"
+    // },
+    // {
+    //   text: "We switched from a leading competitor and haven't looked back. Superior in every way.",
+    //   name: "Roman Evans",
+    //   stars: 5,
+    //   role: "IT Director, SwitchTech",
+    //   industry: "IT Management",
+    //   date: "2025-03-12"
+    // },
+    // {
+    //   text: "Minor learning curve with some advanced features, but the results are worth it.",
+    //   name: "Iris Collins",
+    //   stars: 4,
+    //   role: "Junior Architect, LearnArch",
+    //   industry: "Architecture Training",
+    //   date: "2025-02-23"
+    // },
+    // {
+    //   text: "Perfect for documenting serverless architectures and event-driven systems.",
+    //   name: "Oscar Edwards",
+    //   stars: 5,
+    //   role: "Serverless Specialist, EventDriven",
+    //   industry: "Serverless Computing",
+    //   date: "2025-03-17"
+    // },
+    // {
+    //   text: "Real-time collaboration features are transformative for our distributed team.",
+    //   name: "Daisy Simmons",
+    //   stars: 5,
+    //   role: "Collaboration Lead, TeamSync",
+    //   industry: "Team Collaboration",
+    //   date: "2025-03-06"
+    // },
     // {
     //   text: "The database schema visualization feature saved days of manual documentation.",
     //   name: "Milo Foster",
