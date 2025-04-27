@@ -23,7 +23,7 @@ export default function Navbar() {
             className="object-contain"
             />
             <span 
-            onClick={() => router.push('/chat')}
+            onClick={() => router.push('/')}
             className="text-xl font-bold cursor-pointer">ChartFlow AI
             </span>
         </div>

@@ -7,7 +7,7 @@ import { useCallback, useState, useEffect } from 'react';
 import { Star, Filter, ChevronUp, ChevronDown, Send } from 'lucide-react';
 import type { Engine } from 'tsparticles-engine';
 import { useRouter } from 'next/navigation';
-import { reviews } from './reviews';
+import Navbar from '@/components/ui/navbar';
 
 // Define the review interface for type safety
 interface Review {
@@ -20,69 +20,69 @@ interface Review {
 }
 
 // Enhanced reviews with names and star ratings
-// const reviews: Review[] = [
-//   { 
-//     text: "ChartFlow AI completely streamlined our architecture process. Love it!",
-//     name: "Michael Chen",
-//     stars: 5,
-//     role: "Senior Architect, TechSphere",
-//     industry: "Technology",
-//     date: "2025-03-15"
-//   },
-//   { 
-//     text: "This tool saves hours of documentation and planning. Brilliant UI!",
-//     name: "Sarah Johnson",
-//     stars: 5,
-//     role: "Project Manager, InnovateCorp",
-//     industry: "Software Development",
-//     date: "2025-03-02"
-//   },
-//   { 
-//     text: "As a startup CTO, this is the best assistant I have used so far.",
-//     name: "Alex Rivera",
-//     stars: 5,
-//     role: "CTO, LaunchPad",
-//     industry: "Startups",
-//     date: "2025-02-28"
-//   },
-//   { 
-//     text: "AI-generated SDLC documents are shockingly accurate. 10/10",
-//     name: "Priya Patel",
-//     stars: 5,
-//     role: "DevOps Engineer, CloudNine",
-//     industry: "Cloud Services",
-//     date: "2025-03-10"
-//   },
-//   { 
-//     text: "Made our system design presentation look world-class. Highly recommend!",
-//     name: "David Thompson",
-//     stars: 5,
-//     role: "Lead Developer, CodeCraft",
-//     industry: "Software Development",
-//     date: "2025-02-20"
-//   },
-//   { 
-//     text: "Even our non-tech founder understood the output. That's a win.",
-//     name: "Emma Wilson",
-//     stars: 4,
-//     role: "Product Owner, StartupX",
-//     industry: "E-commerce",
-//     date: "2025-03-05"
-//   },
-//   { 
-//     text: "From user flow to risk analysis — all in one click. Magical.",
-//     name: "James Lee",
-//     stars: 4,
-//     role: "System Architect, DataFlow",
-//     industry: "Data Analytics",
-//     date: "2025-03-18"
-//   }
-// ];
+const reviews: Review[] = [
+  { 
+    text: "ChartFlow AI completely streamlined our architecture process. Love it!",
+    name: "Michael Chen",
+    stars: 5,
+    role: "Senior Architect, TechSphere",
+    industry: "Technology",
+    date: "2025-03-15"
+  },
+  { 
+    text: "This tool saves hours of documentation and planning. Brilliant UI!",
+    name: "Sarah Johnson",
+    stars: 5,
+    role: "Project Manager, InnovateCorp",
+    industry: "Software Development",
+    date: "2025-03-02"
+  },
+  { 
+    text: "As a startup CTO, this is the best assistant I have used so far.",
+    name: "Alex Rivera",
+    stars: 5,
+    role: "CTO, LaunchPad",
+    industry: "Startups",
+    date: "2025-02-28"
+  },
+  { 
+    text: "AI-generated SDLC documents are shockingly accurate. 10/10",
+    name: "Priya Patel",
+    stars: 5,
+    role: "DevOps Engineer, CloudNine",
+    industry: "Cloud Services",
+    date: "2025-03-10"
+  },
+  { 
+    text: "Made our system design presentation look world-class. Highly recommend!",
+    name: "David Thompson",
+    stars: 5,
+    role: "Lead Developer, CodeCraft",
+    industry: "Software Development",
+    date: "2025-02-20"
+  },
+  { 
+    text: "Even our non-tech founder understood the output. That's a win.",
+    name: "Emma Wilson",
+    stars: 4,
+    role: "Product Owner, StartupX",
+    industry: "E-commerce",
+    date: "2025-03-05"
+  },
+  { 
+    text: "From user flow to risk analysis — all in one click. Magical.",
+    name: "James Lee",
+    stars: 4,
+    role: "System Architect, DataFlow",
+    industry: "Data Analytics",
+    date: "2025-03-18"
+  }
+];
 
 // Available industries for filtering
 const industries = [...new Set(reviews.map(review => review.industry))];
 
-// Fixed average rating to 4.8 as requested
+// verage rating to 4.8 as requested
 const averageRating = 4.8;
 
 export default function FeedbackPage() {
@@ -237,6 +237,7 @@ export default function FeedbackPage() {
         />
 
         {/* Fixed header with blur effect when scrolled */}
+        <Navbar/>
         <motion.header 
           className={`sticky top-0 z-30 w-full backdrop-blur-lg transition-all duration-300 ${
             isScrolled ? 'bg-black/70 shadow-lg py-4' : 'bg-transparent py-8'

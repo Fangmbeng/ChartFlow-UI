@@ -13,7 +13,7 @@ export interface Review {
 export const reviews: Review[] =[
     // Original reviews
     { 
-      text: "ChartFlow AI completely streamlined our architecture process. Love it!",
+      text: "ChartFlow AI completely streamlined our architecture process. Love it! The three architecture it produces are great, but 1 out of 10,the diag will crash. Maybe its a server error, but great tool",
       name: "Michael Chen",
       stars: 5,
       role: "Senior Architect, TechSphere",
@@ -21,7 +21,7 @@ export const reviews: Review[] =[
       date: "2025-03-15"
     },
     { 
-      text: "This tool saves hours of documentation and planning. Brilliant UI!",
+      text: "This tool saves hours of documentation and planning. Cool idea!",
       name: "Sarah Johnson",
       stars: 5,
       role: "Project Manager, InnovateCorp",
@@ -29,7 +29,7 @@ export const reviews: Review[] =[
       date: "2025-03-02"
     },
     { 
-      text: "As a startup CTO, this is the best assistant I have used so far.",
+      text: "As a startup CTO, this is a good assistant I have used so far.",
       name: "Alex Rivera",
       stars: 5,
       role: "CTO, LaunchPad",
@@ -37,9 +37,9 @@ export const reviews: Review[] =[
       date: "2025-02-28"
     },
     { 
-      text: "AI-generated SDLC documents are shockingly accurate. 10/10",
+      text: "AI-generated SDLC documents are impressive. 9/10. Maybe make the slide panel bigger",
       name: "Priya Patel",
-      stars: 5,
+      stars: 4,
       role: "DevOps Engineer, CloudNine",
       industry: "Cloud Services",
       date: "2025-03-10"
@@ -61,7 +61,7 @@ export const reviews: Review[] =[
       date: "2025-03-05"
     },
     { 
-      text: "From user flow to risk analysis — all in one click. Magical.",
+      text: "From user flow to risk analysis, all in one click nice. The upload file seems to have a limit",
       name: "James Lee",
       stars: 4,
       role: "System Architect, DataFlow",
@@ -82,20 +82,20 @@ export const reviews: Review[] =[
       text: "We integrated ChartFlow AI into our entire development workflow. Game changer for documentation.",
       name: "Benjamin Park",
       stars: 5,
-      role: "VP Engineering, CodeFusion",
+      role: "VP Engineering, Myskinci",
       industry: "Technology",
       date: "2025-03-04"
     },
     {
-      text: "My team was skeptical at first, but now everyone requests ChartFlow diagrams for all projects.",
+      text: "My team was skeptical at first, but now everyone requests ChartFlow diagrams for all projects. Atleast easy to understand and security level is worth using",
       name: "Lucas Martin",
       stars: 5,
-      role: "Team Lead, DevSolutions",
+      role: "Team Lead, Myskinci",
       industry: "Consulting",
       date: "2025-02-27"
     },
     {
-      text: "As an enterprise architect, I've tried every tool out there. This one actually delivers.",
+      text: "As an enterprise architect, It's easy to implement the required and it pulls the flow. I would like to give a 4.5, but let's just say 5 for now..",
       name: "Olivia Chen",
       stars: 5,
       role: "Enterprise Architect, GlobalTech",
@@ -103,7 +103,7 @@ export const reviews: Review[] =[
       date: "2025-03-08"
     },
     {
-      text: "The learning curve was minimal compared to other architecture tools. Great onboarding materials.",
+      text: "The learning curve was minimal compared to other architecture tools. Great onboarding materials. I would lovemore features ",
       name: "Aiden Williams",
       stars: 4,
       role: "Developer, StartupX",
@@ -138,12 +138,12 @@ export const reviews: Review[] =[
       text: "The collaboration features make remote architecture sessions actually productive.",
       name: "Noah Wilson",
       stars: 5,
-      role: "Remote Team Lead, DistributedSystems",
+      role: "Remote Team Lead, Coding Temple Alumni",
       industry: "Remote Work",
       date: "2025-03-11"
     },
     {
-      text: "Integration with our CI/CD pipeline was seamless. Documentation is now automated.",
+      text: "I recommend Integration with our CI/CD pipeline. Continous prompt for modification of diagram and a bigger slide pane;.",
       name: "Ava Martinez",
       stars: 5,
       role: "DevOps Engineer, DeployFast",
@@ -159,7 +159,7 @@ export const reviews: Review[] =[
       date: "2025-03-14"
     },
     {
-      text: "The version history feature is particularly useful for tracking architectural decisions.",
+      text: "The version history feature is particularly useful for tracking architectural decisions. It would be exceptional if we had continous prompt",
       name: "Isabella Lee",
       stars: 4,
       role: "Technical Documentation Lead, DocuTech",
@@ -167,7 +167,7 @@ export const reviews: Review[] =[
       date: "2025-02-25"
     },
     {
-      text: "Stakeholder presentations have never been easier. The visual clarity is impressive.",
+      text: "Stakeholder presentations looks easier. The visual clarity is good.",
       name: "William Davis",
       stars: 5,
       role: "Solutions Architect, ClientSuccess",
@@ -182,22 +182,22 @@ export const reviews: Review[] =[
       industry: "Cybersecurity",
       date: "2025-03-18"
     },
-    // {
-    //   text: "Used it to document legacy systems before modernization. Saved weeks of reverse engineering.",
-    //   name: "Mason Anderson",
-    //   stars: 5,
-    //   role: "Legacy Systems Specialist, ModernizeIT",
-    //   industry: "IT Modernization",
-    //   date: "2025-03-02"
-    // },
-    // {
-    //   text: "Customer service response times could improve, but the product itself is stellar.",
-    //   name: "Amelia Thomas",
-    //   stars: 4,
-    //   role: "Project Coordinator, FastTrack",
-    //   industry: "Project Management",
-    //   date: "2025-02-28"
-    // },
+    {
+      text: "Used it to document key aspects of systems. Saved days of work focus. It's meant for comunity demo I guess, if not where's the login",
+      name: "Mason Anderson",
+      stars: 5,
+      role: "Legacy Systems Specialist, ModernizeIT",
+      industry: "IT Modernization",
+      date: "2025-03-02"
+    },
+    {
+      text: "Customer service response times has been this good. The product is good, but I feel like make it open source for contributions will be good.",
+      name: "Amelia Thomas",
+      stars: 3,
+      role: "Project Coordinator, FastTrack",
+      industry: "Project Management",
+      date: "2025-02-28"
+    },
     // {
     //   text: "The export to our wiki format wasn't perfect, but the team was quick to add the feature we needed.",
     //   name: "Logan White",
