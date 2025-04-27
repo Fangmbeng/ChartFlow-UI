@@ -79,7 +79,7 @@ Software Engineer | AI Systems Architect
 
 - GitHub: [@Fangmbeng](https://github.com/Fangmbeng)
 - Dev.to: [@BrandonAtonte](https://dev.to/brandonatonte)
-- Website: [ChartFlow.ai](https://chartflow.ai)
+- Website: [ChartFlow.ai](https://chart-flow-ui.vercel.app/)
 
 ## 📜 License
 This project is licensed under a custom portfolio license — for demonstration and scholarly purposes only.  
